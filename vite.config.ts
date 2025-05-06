@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
+import UnoCSS from 'unocss/vite'
 import path from 'path'
 
 const pathResolve = (pathName: string) => {
@@ -8,7 +9,7 @@ const pathResolve = (pathName: string) => {
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), UnoCSS()],
   server: {
     host: true,
     open: true,

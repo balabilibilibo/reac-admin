@@ -4,7 +4,7 @@ import Login from '@/views/login'
 const constRoutes: RouteObject[] = [
   {
     path: '/',
-    element: <div>首页</div>,
+    element: <div className='bg-pink-500 text-white'>首页</div>,
   },
   {
     path: '/login',
