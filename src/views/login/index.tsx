@@ -2,6 +2,7 @@ import React from 'react'
 import type { FormProps } from 'antd'
 import { Button, Checkbox, Form, Input } from 'antd'
 import loginBg from '../../assets/login.svg'
+import { useNavigate } from 'react-router-dom'
 
 type FieldType = {
   username?: string
@@ -9,15 +10,13 @@ type FieldType = {
   remember?: string
 }
 
-const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
-  console.log('Success:', values)
-}
-
-const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
-  console.log('Failed:', errorInfo)
-}
-
 const Login: React.FC = () => {
+  const navigate = useNavigate()
+  const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
+    console.log('Success:', values)
+    navigate('/dashboard')
+  }
+
   return (
     <div className='flex h-full'>
       {/* 左侧占位图 */}
@@ -39,9 +38,12 @@ const Login: React.FC = () => {
           <Form
             name='login'
             layout='vertical'
-            initialValues={{ remember: true }}
+            initialValues={{
+              username: 'admin',
+              password: '123456',
+              remember: true,
+            }}
             onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
             autoComplete='off'
           >
             <Form.Item<FieldType>
