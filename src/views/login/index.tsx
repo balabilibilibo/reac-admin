@@ -1,6 +1,6 @@
 import React from 'react'
 import type { FormProps } from 'antd'
-import { Button, Checkbox, Form, Input } from 'antd'
+import { Button, Checkbox, Form, Input, notification } from 'antd'
 import loginBg from '../../assets/login.svg'
 import { useNavigate } from 'react-router-dom'
 
@@ -12,9 +12,15 @@ type FieldType = {
 
 const Login: React.FC = () => {
   const navigate = useNavigate()
-  const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
+  const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
     console.log('Success:', values)
-    navigate('/dashboard')
+    const { username } = values
+    localStorage.setItem('react-token', 'react-token')
+    await navigate('/dashboard')
+    notification.success({
+      message: '登录成功',
+      description: `欢迎回来：${username}`,
+    })
   }
 
   return (
