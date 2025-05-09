@@ -1,6 +1,6 @@
 import { createHashRouter, RouteObject, Navigate } from 'react-router-dom'
 import Login from '@/views/login'
-import Dashboard from '@/views/dashboard'
+import LayoutCon from '@/layout/index'
 import AuthGuard from '@/router/AuthGuard'
 
 const constRoutes: RouteObject[] = [
@@ -14,7 +14,7 @@ const constRoutes: RouteObject[] = [
   },
   {
     path: '/dashboard',
-    element: <AuthGuard children={<Dashboard />} />,
+    element: <AuthGuard children={<LayoutCon />} />,
     children: [
       {
         path: 'analysis',
