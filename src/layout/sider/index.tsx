@@ -1,8 +1,8 @@
 import { Layout } from 'antd'
-import { useState } from 'react'
 import SiderMenu from '../menu'
+import { useAppStore } from '@/store/app'
 const Sider: React.FC = () => {
-  const [collapsed, setCollapsed] = useState(false)
+  const { collapsed } = useAppStore()
   return (
     <Layout.Sider trigger={null} collapsible collapsed={collapsed}>
       <div

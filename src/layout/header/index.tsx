@@ -1,9 +1,9 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
 import { Button, Layout, theme } from 'antd'
-import { useState } from 'react'
+import { useAppStore } from '@/store/app'
 
 const Header: React.FC = () => {
-  const [collapsed, setCollapsed] = useState(false)
+  const { collapsed, setCollapsed } = useAppStore()
   const {
     token: { colorBgContainer },
   } = theme.useToken()
@@ -12,7 +12,7 @@ const Header: React.FC = () => {
       <Button
         type='text'
         icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-        onClick={() => setCollapsed(!collapsed)}
+        onClick={setCollapsed}
         style={{
           fontSize: '16px',
           width: 64,
