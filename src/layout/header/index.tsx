@@ -7,6 +7,7 @@ import {
 import { Button, Layout, theme, Avatar, Dropdown, MenuProps, Modal } from 'antd'
 import { useAppStore } from '@/store/app'
 import avatar from '@/assets/avatar.gif'
+import { useNavigate } from 'react-router-dom'
 
 type MenuEvent = 'logout' | 'docs'
 const { confirm } = Modal
@@ -37,6 +38,7 @@ const Header: React.FC = () => {
     },
   ]
 
+  const navigate = useNavigate()
   const logout = () => {
     confirm({
       title: '提示',
@@ -46,7 +48,7 @@ const Header: React.FC = () => {
       centered: true,
       onOk() {
         localStorage.removeItem('react-token')
-        history.replaceState({}, '', '/login')
+        navigate('/login')
       },
     })
   }
