@@ -2,6 +2,7 @@ import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
 import { Button, Layout, theme } from 'antd'
 import { useAppStore } from '@/store/app'
 import UserDropDown from './components/UserDropDown'
+import FullScreen from './components/FullScreen'
 
 const Header: React.FC = () => {
   const { collapsed, setCollapsed } = useAppStore()
@@ -26,7 +27,8 @@ const Header: React.FC = () => {
           }}
         />
       </div>
-      <div className='mx-2.5 '>
+      <div className='mx-2.5 flex items-center gap-4 h-full'>
+        <FullScreen />
         <UserDropDown />
       </div>
     </Layout.Header>
