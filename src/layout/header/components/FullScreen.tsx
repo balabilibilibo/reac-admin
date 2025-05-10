@@ -21,7 +21,10 @@ const FullScreen: React.FC = () => {
       title={isFullscreen ? '退出全屏' : '全屏'}
       onOpenChange={setIsOpen}
     >
-      <div className='cursor-pointer' onClick={handleClick}>
+      <div
+        className='cursor-pointer h-8 w-8 px-3 flex justify-center hover:bg-[#f5f5f5] rounded'
+        onClick={handleClick}
+      >
         {isFullscreen ? <FullscreenExitOutlined /> : <FullscreenOutlined />}
       </div>
     </Tooltip>

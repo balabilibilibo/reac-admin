@@ -16,7 +16,7 @@ const Login: React.FC = () => {
     console.log('Success:', values)
     const { username } = values
     localStorage.setItem('react-token', 'react-token')
-    await navigate('/dashboard')
+    await navigate('/dashboard/analysis')
     notification.success({
       message: '登录成功',
       description: `欢迎回来：${username}`,

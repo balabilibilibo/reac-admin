@@ -1,4 +1,5 @@
 import { Layout, theme } from 'antd'
+import { Outlet } from 'react-router-dom'
 const Content: React.FC = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -13,7 +14,9 @@ const Content: React.FC = () => {
         borderRadius: borderRadiusLG,
       }}
     >
-      <div>Content</div>
+      <div>
+        <Outlet />
+      </div>
     </Layout.Content>
   )
 }

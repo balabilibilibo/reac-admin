@@ -21,13 +21,15 @@ const Header: React.FC = () => {
           icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
           onClick={setCollapsed}
           style={{
+            marginLeft: 15,
             fontSize: '16px',
-            width: 64,
-            height: 64,
+            padding: '0 15px',
+            width: 32,
+            height: 32,
           }}
         />
       </div>
-      <div className='mx-2.5 flex items-center gap-4 h-full'>
+      <div className='mx-2.5 flex items-center'>
         <FullScreen />
         <UserDropDown />
       </div>
