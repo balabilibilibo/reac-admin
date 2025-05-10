@@ -1,4 +1,8 @@
-import { InfoCircleOutlined, DashboardOutlined } from '@ant-design/icons'
+import {
+  InfoCircleOutlined,
+  DashboardOutlined,
+  MenuOutlined,
+} from '@ant-design/icons'
 import { Menu } from 'antd'
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -6,52 +10,114 @@ import { useLocation, useNavigate } from 'react-router-dom'
 const SiderMenu: React.FC = () => {
   const navigate = useNavigate()
   const [selectedKeys, setSelectedKeys] = useState<string[]>([])
+  const [openKeys, setOpenKeys] = useState<string[]>([])
   const location = useLocation()
   const { pathname } = location
 
   const items = [
     {
-      key: 'dashboard',
+      key: '/dashboard',
       icon: <DashboardOutlined />,
       label: 'Dashboard',
       children: [
         {
-          key: 'analysis',
+          key: '/dashboard/analysis',
           label: '分析页',
         },
         {
-          key: 'workbench',
+          key: '/dashboard/workbench',
           label: '工作台',
         },
       ],
     },
     {
-      key: 'about',
+      key: '/menu',
+      label: 'Menu',
+      icon: <MenuOutlined />,
+      children: [
+        {
+          key: '/menu1',
+          label: 'Menu1',
+          children: [
+            {
+              key: '/menu/menu1/menu1-1',
+              label: 'Menu1-1',
+            },
+            {
+              key: '/menu/menu1/menu1-2',
+              label: 'Menu1-2',
+            },
+          ],
+        },
+        {
+          key: '/menu/menu2',
+          label: 'Menu2',
+          children: [
+            {
+              key: '/menu/menu2/menu2-1',
+              label: 'Menu2-1',
+            },
+            {
+              key: '/menu/menu2/menu2-2',
+              label: 'Menu2-2',
+              children: [
+                {
+                  key: '/menu/menu2/menu2-2/menu2-2-1',
+                  label: 'Menu2-2-1',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      key: '/about',
       icon: <InfoCircleOutlined />,
       label: '关于',
     },
   ]
 
-  // 监听路由变化，设置选中的 key
-  useEffect(() => {
-    const keys = pathname.split('/').filter((item) => !!item)
-    setSelectedKeys(keys.length > 1 ? [keys[1]] : [keys[0]])
-  }, [pathname])
+  const findParentKeys = (nodes: any[], target: string) => {
+    const parentKeys = new Set<any>()
+    const list = [...nodes]
+    while (list.length) {
+      // 取出数组最后一个元素
+      const node = list.pop()
 
-  const handleClick = (e: any) => {
-    switch (e.key) {
-      case 'analysis':
-        navigate('/dashboard/analysis')
-        break
-      case 'workbench':
-        navigate('/dashboard/workbench')
-        break
-      case 'about':
-        navigate('/about')
-        break
-      default:
-        break
+      // 如果是目标节点，则返回父节点的key
+      if (node.key === target) {
+        ;(node.parentKeys || []).forEach((item: any) => parentKeys.add(item))
+      }
+
+      // 如果当前节点有子节点，则将该子节点的父节点key添加到parentKeys中
+      if (node.children) {
+        const data = node.children.map((child: any) => ({
+          ...child,
+          parentKeys: [node.key, ...(node.parentKeys || [])],
+        }))
+        // 将子节点添加到list中，以便下一次循环
+        list.push(...data)
+      }
     }
+    // 创建一个 Set，用于存储父节点的 key
+    return Array.from(parentKeys)
+  }
+
+  // 监听路由变化，设置选中的 keys 和 展开的 keys
+  useEffect(() => {
+    setSelectedKeys([pathname])
+    const parentKeys = findParentKeys(items, pathname)
+    setOpenKeys(parentKeys)
+  }, [])
+
+  const handleClick = ({ key }: { key: string }) => {
+    setSelectedKeys([key])
+    navigate(key.startsWith('/') ? key : `/${key}`)
+  }
+
+  const handleOpenChange = (keys: string[]) => {
+    setOpenKeys(keys)
   }
 
   return (
@@ -59,8 +125,10 @@ const SiderMenu: React.FC = () => {
       theme='dark'
       mode='inline'
       items={items}
+      openKeys={openKeys}
       selectedKeys={selectedKeys}
-      onClick={handleClick}
+      onSelect={handleClick}
+      onOpenChange={handleOpenChange}
     />
   )
 }
