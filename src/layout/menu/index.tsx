@@ -43,7 +43,7 @@ const SiderMenu: React.FC = () => {
       icon: <MenuOutlined />,
       children: [
         {
-          key: '/menu1',
+          key: '/menu/menu1',
           label: 'Menu1',
           children: [
             {
@@ -116,18 +116,36 @@ const SiderMenu: React.FC = () => {
     setSelectedKeys([pathname])
     const parentKeys = findParentKeys(items, pathname)
     setOpenKeys(parentKeys)
+    console.log('parentKeys', parentKeys)
   }, [pathname])
 
   const handleClick = ({ key }: { key: string }) => {
-    setSelectedKeys([key])
     navigate(key.startsWith('/') ? key : `/${key}`)
   }
 
   const handleOpenChange = (keys: string[]) => {
-    const newKeys = [...keys]
-    const lastOpenKey = newKeys.pop() || ''
-    const parentKeys = findParentKeys(items, lastOpenKey)
-    setOpenKeys(Array.from(new Set([...parentKeys, lastOpenKey])))
+    // 获取一级菜单的 keys
+    const rootMenuKeys = []
+    for (const item of items) {
+      if (item.children && item.children.length > 0) {
+        rootMenuKeys.push(item.key)
+      }
+    }
+    // 获取最后一个展开菜单的 key
+    const lastOpenKey = keys.find((key) => !openKeys.includes(key))
+    // 如果不存在，则展开当前 keys
+    if (!lastOpenKey) {
+      setOpenKeys(keys)
+    } else {
+      // 最后一个  key 是否为一级菜单，是则展开
+      if (rootMenuKeys.includes(lastOpenKey)) {
+        setOpenKeys([lastOpenKey])
+      } else {
+        // 否则展开父级菜单
+        const parentKeys = findParentKeys(items, lastOpenKey)
+        setOpenKeys([...parentKeys, lastOpenKey])
+      }
+    }
   }
 
   return (
@@ -135,8 +153,8 @@ const SiderMenu: React.FC = () => {
       theme='dark'
       mode='inline'
       items={items}
-      openKeys={openKeys}
       selectedKeys={selectedKeys}
+      openKeys={openKeys}
       onSelect={handleClick}
       onOpenChange={handleOpenChange}
     />
