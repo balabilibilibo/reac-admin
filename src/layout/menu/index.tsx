@@ -6,6 +6,7 @@ import {
 import { Menu } from 'antd'
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { useAppStore } from '@/store/app'
 
 interface MenuItem {
   key: string
@@ -15,6 +16,7 @@ interface MenuItem {
   parentKeys?: string[]
 }
 const SiderMenu: React.FC = () => {
+  const { isDarkMode } = useAppStore()
   const navigate = useNavigate()
   const [selectedKeys, setSelectedKeys] = useState<string[]>([])
   const [openKeys, setOpenKeys] = useState<string[]>([])
@@ -116,7 +118,6 @@ const SiderMenu: React.FC = () => {
     setSelectedKeys([pathname])
     const parentKeys = findParentKeys(items, pathname)
     setOpenKeys(parentKeys)
-    console.log('parentKeys', parentKeys)
   }, [pathname])
 
   const handleClick = ({ key }: { key: string }) => {
@@ -150,7 +151,7 @@ const SiderMenu: React.FC = () => {
 
   return (
     <Menu
-      theme='dark'
+      theme={isDarkMode ? 'light' : 'dark'}
       mode='inline'
       items={items}
       selectedKeys={selectedKeys}

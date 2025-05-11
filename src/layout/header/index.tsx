@@ -3,6 +3,7 @@ import { Button, Layout, theme } from 'antd'
 import { useAppStore } from '@/store/app'
 import UserDropDown from './components/UserDropDown'
 import FullScreen from './components/FullScreen'
+import ThemeSwitch from './components/ThemeSwitch'
 
 const Header: React.FC = () => {
   const { collapsed, setCollapsed } = useAppStore()
@@ -30,6 +31,7 @@ const Header: React.FC = () => {
         />
       </div>
       <div className='mx-2.5 flex items-center'>
+        <ThemeSwitch />
         <FullScreen />
         <UserDropDown />
       </div>
