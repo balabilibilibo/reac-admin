@@ -7,6 +7,13 @@ import { Menu } from 'antd'
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
+interface MenuItem {
+  key: string
+  label: string
+  icon?: React.ReactNode
+  children?: MenuItem[]
+  parentKeys?: string[]
+}
 const SiderMenu: React.FC = () => {
   const navigate = useNavigate()
   const [selectedKeys, setSelectedKeys] = useState<string[]>([])
@@ -78,12 +85,12 @@ const SiderMenu: React.FC = () => {
     },
   ]
 
-  const findParentKeys = (nodes: any[], target: string) => {
+  const findParentKeys = (nodes: MenuItem[], target: string) => {
     const parentKeys = new Set<any>()
     const list = [...nodes]
     while (list.length) {
       // 取出数组最后一个元素
-      const node = list.pop()
+      const node = list.pop()!
 
       // 如果是目标节点，则返回父节点的key
       if (node.key === target) {
@@ -109,7 +116,7 @@ const SiderMenu: React.FC = () => {
     setSelectedKeys([pathname])
     const parentKeys = findParentKeys(items, pathname)
     setOpenKeys(parentKeys)
-  }, [])
+  }, [pathname])
 
   const handleClick = ({ key }: { key: string }) => {
     setSelectedKeys([key])
@@ -117,7 +124,10 @@ const SiderMenu: React.FC = () => {
   }
 
   const handleOpenChange = (keys: string[]) => {
-    setOpenKeys(keys)
+    const newKeys = [...keys]
+    const lastOpenKey = newKeys.pop() || ''
+    const parentKeys = findParentKeys(items, lastOpenKey)
+    setOpenKeys(Array.from(new Set([...parentKeys, lastOpenKey])))
   }
 
   return (
