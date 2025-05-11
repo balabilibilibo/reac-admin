@@ -24,9 +24,9 @@ const Login: React.FC = () => {
   }
 
   return (
-    <div className='flex h-full'>
+    <div className='flex h-full dark:bg-[#1f1f1f]'>
       {/* 左侧占位图 */}
-      <div className='flex-1 bg-[#1677ff] h-full flex justify-center items-center'>
+      <div className='flex-1 bg-[#1677ff] dark:bg-[#1f1f1f] h-full flex justify-center items-center'>
         <div className='flex flex-col  items-center'>
           <img src={loginBg} alt='' className='w-2/5' />
           <div className='text-3xl font-bold  tracking-widest  text-white mt-10'>
@@ -40,7 +40,7 @@ const Login: React.FC = () => {
       {/* 右侧登录表单 */}
       <div className='flex-1 flex items-center h-full '>
         <div className='w-2/5 flex flex-col  ml-30'>
-          <h2 className='font-bold text-3xl mb-5'>欢迎登录</h2>
+          <h2 className='font-bold text-3xl mb-5 dark:text-white'>欢迎登录</h2>
           <Form
             name='login'
             layout='vertical'
