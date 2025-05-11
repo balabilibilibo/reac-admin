@@ -2,6 +2,7 @@ import { Layout } from 'antd'
 import SiderMenu from '../menu'
 import { useAppStore } from '@/store/app'
 const Sider: React.FC = () => {
+  const { isDarkMode } = useAppStore()
   const { collapsed } = useAppStore()
   return (
     <Layout.Sider
@@ -9,6 +10,7 @@ const Sider: React.FC = () => {
       collapsible
       collapsed={collapsed}
       collapsedWidth={48}
+      theme={isDarkMode ? 'light' : 'dark'}
     >
       <div
         className={`cursor-pointer h-12

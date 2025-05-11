@@ -13,7 +13,10 @@ const App = () => {
         algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm,
         components: {
           Layout: {
-            siderBg: '#141414',
+            headerHeight: 48,
+          },
+          Menu: {
+            subMenuItemBg: '#141414',
           },
         },
       }}

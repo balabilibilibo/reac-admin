@@ -22,7 +22,7 @@ const FullScreen: React.FC = () => {
       onOpenChange={setIsOpen}
     >
       <div
-        className='cursor-pointer h-8 w-8 px-3 flex justify-center hover:bg-[#f5f5f5] rounded'
+        className='cursor-pointer h-8 w-8 px-3 flex justify-center dark:hover-bg-white/10  hover:bg-black/5  rounded'
         onClick={handleClick}
       >
         {isFullscreen ? <FullscreenExitOutlined /> : <FullscreenOutlined />}
