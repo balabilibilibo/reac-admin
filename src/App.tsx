@@ -19,6 +19,9 @@ const App = () => {
             subMenuItemBg: '#141414',
           },
           Form: {},
+          Descriptions: {
+            titleMarginBottom: 10,
+          },
         },
       }}
     >

@@ -2,15 +2,14 @@ import { Layout, theme } from 'antd'
 import { Outlet } from 'react-router-dom'
 const Content: React.FC = () => {
   const {
-    token: { colorBgContainer, borderRadiusLG },
+    token: { borderRadiusLG },
   } = theme.useToken()
   return (
     <Layout.Content
+      className='bg-[#f5f5f5] dark:bg-black overflow-y-auto'
       style={{
         margin: 10,
-        padding: 10,
         minHeight: 280,
-        background: colorBgContainer,
         borderRadius: borderRadiusLG,
       }}
     >
