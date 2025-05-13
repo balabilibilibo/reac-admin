@@ -19,7 +19,7 @@ const infoSchema: DescriptionsProps['items'] = [
     label: 'Gitee',
     children: (
       <Button
-        className='px-0'
+        className='p-0 h-0'
         type='link'
         href='https://gitee.com/balabilibo/nest-server/tree/react-admin/'
         target='_blank'
@@ -59,7 +59,7 @@ const About: React.FC = () => {
         <div>
           这是一个使用Vite、Antd、React
           Router、Zustand、TypeScript、UnoCSS、Ahooks
-          搭建的简易后台管理系统，用来学习...
+          搭建的简易后台管理系统，用来学习 React 相关知识...
         </div>
       </div>
       <div className='bg-white p-2.5 rounded dark:bg-[#141414]'>

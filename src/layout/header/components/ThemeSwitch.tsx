@@ -1,11 +1,16 @@
 import { useAppStore } from '@/store/app'
 import { SunOutlined, MoonOutlined } from '@ant-design/icons'
+import { useTheme } from 'ahooks'
 const ThemeSwitch: React.FC = () => {
-  const { isDarkMode, toggleDarkMode } = useAppStore()
+  const { isDarkMode, updateDarkMode } = useAppStore()
+  const { setThemeMode } = useTheme({
+    localStorageKey: 'themeMode',
+  })
   const handleToogleMode = () => {
+    updateDarkMode(isDarkMode ? false : true)
+    setThemeMode(isDarkMode ? 'light' : 'dark')
     document.documentElement.classList.toggle('dark')
     document.documentElement.dataset.theme = isDarkMode ? 'light' : 'dark'
-    toggleDarkMode()
   }
   return (
     <div

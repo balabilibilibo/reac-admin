@@ -3,10 +3,22 @@ import { ConfigProvider, theme } from 'antd'
 import router from './router'
 import '@/styles/index.less'
 import { useAppStore } from '@/store/app'
+import { useTheme } from 'ahooks'
+import { useEffect } from 'react'
 
 const { darkAlgorithm, defaultAlgorithm } = theme
 const App = () => {
-  const { isDarkMode } = useAppStore()
+  const { isDarkMode, updateDarkMode } = useAppStore()
+  const { theme } = useTheme({
+    localStorageKey: 'themeMode',
+  })
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    document.documentElement.classList.toggle('dark', theme === 'dark')
+    updateDarkMode(theme === 'dark')
+  }, [])
+
   return (
     <ConfigProvider
       theme={{
