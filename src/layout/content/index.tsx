@@ -13,7 +13,7 @@ const Content: React.FC = () => {
         borderRadius: borderRadiusLG,
       }}
     >
-      <div>
+      <div className='h-full'>
         <Outlet />
       </div>
     </Layout.Content>

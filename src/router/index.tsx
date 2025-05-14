@@ -8,6 +8,7 @@ import Menu11 from '@/views/menu/menu1/menu1-1'
 import Menu12 from '@/views/menu/menu1/menu1-2'
 import Menu21 from '@/views/menu/menu2/menu2-1'
 import Menu221 from '@/views/menu/menu2/menu2-2/menu2-2-1'
+import NotFound from '@/views/Exception/NotFound'
 
 import About from '@/views/about'
 
@@ -81,10 +82,14 @@ const constRoutes: RouteObject[] = [
       },
     ],
   },
-
   {
-    path: '*',
-    element: <div>404</div>,
+    element: <LayoutCon />,
+    children: [
+      {
+        path: '*',
+        element: <NotFound />,
+      },
+    ],
   },
 ]
 
