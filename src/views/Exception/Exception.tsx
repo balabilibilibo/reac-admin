@@ -6,23 +6,7 @@ import noPermSvg from '@/assets/403.svg'
 import netWorkSvg from '@/assets/network.svg'
 import { ReactNode, isValidElement } from 'react'
 import { useNavigate } from 'react-router-dom'
-
-enum ExceptionEnum {
-  // page not access
-  PAGE_NOT_ACCESS = 403,
-
-  // page not found
-  PAGE_NOT_FOUND = 404,
-
-  // error
-  ERROR = 500,
-
-  // net work error
-  NET_WORK_ERROR = 10000,
-
-  // No data on the page. In fact, it is not an exception page
-  PAGE_NOT_DATA = 10100,
-}
+import { ExceptionEnum } from '@/enums/exceptionEnum'
 
 interface MapValue {
   title?: string

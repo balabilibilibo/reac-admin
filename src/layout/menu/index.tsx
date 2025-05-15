@@ -90,6 +90,28 @@ const SiderMenu: React.FC = () => {
       key: '/exception',
       icon: <ExceptionOutlined />,
       label: '异常页',
+      children: [
+        {
+          key: '/exception/403',
+          label: '403',
+        },
+        {
+          key: '/exception/404',
+          label: '404',
+        },
+        {
+          key: '/exception/500',
+          label: '500',
+        },
+        {
+          key: '/exception/net-work-error',
+          label: '网络错误',
+        },
+        {
+          key: '/exception/no-data',
+          label: '无数据',
+        },
+      ],
     },
   ]
 

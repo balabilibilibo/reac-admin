@@ -1,4 +1,5 @@
 import { createHashRouter, RouteObject, Navigate } from 'react-router-dom'
+import { ExceptionEnum } from '@/enums/exceptionEnum'
 import Login from '@/views/login'
 import LayoutCon from '@/layout/index'
 import AuthGuard from '@/router/AuthGuard'
@@ -98,7 +99,28 @@ const constRoutes: RouteObject[] = [
       },
       {
         path: 'exception',
-        element: <Exception />,
+        children: [
+          {
+            path: '403',
+            element: <Exception status={ExceptionEnum.PAGE_NOT_ACCESS} />,
+          },
+          {
+            path: '404',
+            element: <Exception status={ExceptionEnum.PAGE_NOT_FOUND} />,
+          },
+          {
+            path: '500',
+            element: <Exception status={ExceptionEnum.ERROR} />,
+          },
+          {
+            path: 'net-work-error',
+            element: <Exception status={ExceptionEnum.NET_WORK_ERROR} />,
+          },
+          {
+            path: 'no-data',
+            element: <Exception status={ExceptionEnum.PAGE_NOT_DATA} />,
+          },
+        ],
       },
       {
         children: [
