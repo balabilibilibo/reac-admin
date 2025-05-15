@@ -10,6 +10,7 @@ import Menu21 from '@/views/menu/menu2/menu2-1'
 import Menu221 from '@/views/menu/menu2/menu2-2/menu2-2-1'
 import NotFound from '@/views/Exception/NotFound'
 import ErrorBoundary from '@/views/Exception/ErrorBoundary'
+import Exception from '@/views/Exception/Exception'
 
 import About from '@/views/about'
 
@@ -94,6 +95,10 @@ const constRoutes: RouteObject[] = [
             element: <About />,
           },
         ],
+      },
+      {
+        path: 'exception',
+        element: <Exception />,
       },
       {
         children: [

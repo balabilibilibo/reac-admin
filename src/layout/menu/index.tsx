@@ -2,6 +2,7 @@ import {
   InfoCircleOutlined,
   DashboardOutlined,
   MenuOutlined,
+  ExceptionOutlined,
 } from '@ant-design/icons'
 import { Menu } from 'antd'
 import { useEffect, useState } from 'react'
@@ -84,6 +85,11 @@ const SiderMenu: React.FC = () => {
       key: '/about',
       icon: <InfoCircleOutlined />,
       label: '关于',
+    },
+    {
+      key: '/exception',
+      icon: <ExceptionOutlined />,
+      label: '异常页',
     },
   ]
 
