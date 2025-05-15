@@ -82,11 +82,6 @@ const SiderMenu: React.FC = () => {
       ],
     },
     {
-      key: '/about',
-      icon: <InfoCircleOutlined />,
-      label: '关于',
-    },
-    {
       key: '/exception',
       icon: <ExceptionOutlined />,
       label: '异常页',
@@ -112,6 +107,11 @@ const SiderMenu: React.FC = () => {
           label: '无数据',
         },
       ],
+    },
+    {
+      key: '/about',
+      icon: <InfoCircleOutlined />,
+      label: '关于',
     },
   ]
 
