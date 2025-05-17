@@ -27,7 +27,7 @@ statusMap.set(ExceptionEnum.PAGE_NOT_ACCESS, {
   subTitle: '抱歉，您无权访问此页面。',
   icon: noPermSvg,
   btnText: backHome,
-  isRefresh: false,
+  isRefresh: false
 })
 
 statusMap.set(ExceptionEnum.PAGE_NOT_FOUND, {
@@ -36,7 +36,7 @@ statusMap.set(ExceptionEnum.PAGE_NOT_FOUND, {
   subTitle: '抱歉，您访问的页面不存在。',
   icon: notFoundSvg,
   btnText: backHome,
-  isRefresh: false,
+  isRefresh: false
 })
 statusMap.set(ExceptionEnum.ERROR, {
   title: '500',
@@ -44,7 +44,7 @@ statusMap.set(ExceptionEnum.ERROR, {
   subTitle: '抱歉，服务器报告错误。',
   icon: errorSvg,
   btnText: backHome,
-  isRefresh: false,
+  isRefresh: false
 })
 statusMap.set(ExceptionEnum.PAGE_NOT_DATA, {
   title: '当前页无数据',
@@ -52,7 +52,7 @@ statusMap.set(ExceptionEnum.PAGE_NOT_DATA, {
   subTitle: '',
   icon: emptySvg,
   btnText: refresh,
-  isRefresh: true,
+  isRefresh: true
 })
 statusMap.set(ExceptionEnum.NET_WORK_ERROR, {
   title: '网络错误',
@@ -60,7 +60,7 @@ statusMap.set(ExceptionEnum.NET_WORK_ERROR, {
   subTitle: '抱歉，您的网络连接已断开，请检查您的网咯！',
   icon: netWorkSvg,
   btnText: refresh,
-  isRefresh: true,
+  isRefresh: true
 })
 
 interface Props {
@@ -82,19 +82,13 @@ const Exception = (props: Props) => {
     navigate(0)
   }
 
-  const { title, subTitle, icon, btnText, isRefresh } = statusMap.get(
-    props.status || 404
-  )!
+  const { title, subTitle, icon, btnText, isRefresh } = statusMap.get(props.status || 404)!
   const renderIcon = () => {
     if (props.icon) {
       return isValidElement(props) ? (
         props.icon
       ) : (
-        <img
-          width={400}
-          src={props.icon as string}
-          title={subTitle || props.subTitle}
-        />
+        <img width={400} src={props.icon as string} title={subTitle || props.subTitle} />
       )
     }
     if (icon) {
@@ -103,14 +97,12 @@ const Exception = (props: Props) => {
     return null
   }
   return (
-    <div className='flex items-center justify-center h-full bg-white dark:bg-black flex-col'>
+    <div className="flex items-center justify-center h-full bg-white dark:bg-black flex-col">
       {renderIcon()}
-      <div className='text-center mt-[-80px]'>
-        <div className='text-2xl'>{props.title || title}</div>
-        <div className='text-black/45 dark:text-white/45 my-5'>
-          {props.subTitle || subTitle}
-        </div>
-        <Button type='primary' onClick={isRefresh ? refresh : goHome}>
+      <div className="text-center mt-[-80px]">
+        <div className="text-2xl">{props.title || title}</div>
+        <div className="text-black/45 dark:text-white/45 my-5">{props.subTitle || subTitle}</div>
+        <Button type="primary" onClick={isRefresh ? refresh : goHome}>
           {props.btnText || btnText}
         </Button>
       </div>

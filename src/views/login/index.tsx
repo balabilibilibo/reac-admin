@@ -19,65 +19,49 @@ const Login: React.FC = () => {
     await navigate('/dashboard/analysis')
     notification.success({
       message: '登录成功',
-      description: `欢迎回来：${username}`,
+      description: `欢迎回来：${username}`
     })
   }
 
   return (
-    <div className='flex h-full dark:bg-[#1f1f1f]'>
+    <div className="flex h-full dark:bg-[#1f1f1f]">
       {/* 左侧占位图 */}
-      <div className='flex-1 bg-[#1677ff] dark:bg-[#1f1f1f] h-full flex justify-center items-center'>
-        <div className='flex flex-col  items-center'>
-          <img src={loginBg} alt='' className='w-2/5' />
-          <div className='text-3xl font-bold  tracking-widest  text-white mt-10'>
-            中后台管理系统
-          </div>
-          <div className='mt-4 text-white '>
-            使用 React、React Router、Antd、Zustand 搭建的一个简易后台管理系统
-          </div>
+      <div className="flex-1 bg-[#1677ff] dark:bg-[#1f1f1f] h-full flex justify-center items-center">
+        <div className="flex flex-col  items-center">
+          <img src={loginBg} alt="" className="w-2/5" />
+          <div className="text-3xl font-bold  tracking-widest  text-white mt-10">中后台管理系统</div>
+          <div className="mt-4 text-white ">使用 React、React Router、Antd、Zustand 搭建的一个简易后台管理系统</div>
         </div>
       </div>
       {/* 右侧登录表单 */}
-      <div className='flex-1 flex items-center h-full '>
-        <div className='w-2/5 flex flex-col  ml-30'>
-          <h2 className='font-bold text-3xl mb-5 dark:text-white'>欢迎登录</h2>
+      <div className="flex-1 flex items-center h-full ">
+        <div className="w-2/5 flex flex-col  ml-30">
+          <h2 className="font-bold text-3xl mb-5 dark:text-white">欢迎登录</h2>
           <Form
-            name='login'
-            layout='vertical'
+            name="login"
+            layout="vertical"
             initialValues={{
               username: 'admin',
               password: '123456',
-              remember: true,
+              remember: true
             }}
             onFinish={onFinish}
-            autoComplete='off'
+            autoComplete="off"
           >
-            <Form.Item<FieldType>
-              label={null}
-              name='username'
-              rules={[{ required: true, message: '请输入账号' }]}
-            >
-              <Input size='large' />
+            <Form.Item<FieldType> label={null} name="username" rules={[{ required: true, message: '请输入账号' }]}>
+              <Input size="large" />
             </Form.Item>
 
-            <Form.Item<FieldType>
-              label={null}
-              name='password'
-              rules={[{ required: true, message: '请输入密码' }]}
-            >
-              <Input.Password size='large' />
+            <Form.Item<FieldType> label={null} name="password" rules={[{ required: true, message: '请输入密码' }]}>
+              <Input.Password size="large" />
             </Form.Item>
 
-            <Form.Item<FieldType>
-              name='remember'
-              valuePropName='checked'
-              label={null}
-            >
+            <Form.Item<FieldType> name="remember" valuePropName="checked" label={null}>
               <Checkbox>记住我</Checkbox>
             </Form.Item>
 
             <Form.Item label={null}>
-              <Button block type='primary' htmlType='submit' size='large'>
+              <Button block type="primary" htmlType="submit" size="large">
                 登录
               </Button>
             </Form.Item>

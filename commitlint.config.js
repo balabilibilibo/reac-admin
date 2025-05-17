@@ -42,9 +42,9 @@ export default {
         'revert', // 回滚 commit
         'wip', // 正在开发中
         'workflow', // 工作流程变更
-        'types', // 类型定义文件修改
-      ],
-    ],
+        'types' // 类型定义文件修改
+      ]
+    ]
   },
   prompt: {
     alias: { fd: 'docs: fix typos' },
@@ -58,7 +58,7 @@ export default {
       footerPrefixesSelect: '选择关联issue前缀（可选）:',
       customFooterPrefix: '输入自定义issue前缀 :',
       footer: '列举关联issue (可选) 例如: #31, #I3244 :\n',
-      confirmCommit: '是否提交或修改commit ?',
+      confirmCommit: '是否提交或修改commit ?'
     },
     types: [
       { value: 'feat', name: 'feat:     ✨  新增功能', emoji: ':sparkles:' },
@@ -68,46 +68,46 @@ export default {
       {
         value: 'refactor',
         name: 'refactor: ♻️   代码重构',
-        emoji: ':recycle:',
+        emoji: ':recycle:'
       },
       { value: 'perf', name: 'perf:     ⚡️  性能提升', emoji: ':zap:' },
       {
         value: 'test',
         name: 'test:     ✅  测试相关',
-        emoji: ':white_check_mark:',
+        emoji: ':white_check_mark:'
       },
       {
         value: 'build',
         name: 'build:    📦️  构建流程、外部依赖变更（如升级 npm 包、修改 webpack 配置等）',
-        emoji: ':package:',
+        emoji: ':package:'
       },
       {
         value: 'ci',
         name: 'ci:       🎡  修改 CI 配置、脚本',
-        emoji: ':ferris_wheel:',
+        emoji: ':ferris_wheel:'
       },
       {
         value: 'chore',
         name: 'chore:    🔨  对构建过程或辅助工具和库的更改（不影响源文件、测试用例）',
-        emoji: ':hammer:',
+        emoji: ':hammer:'
       },
       { value: 'revert', name: 'revert:   ⏪️  回退代码', emoji: ':rewind:' },
       {
         value: 'wip',
         name: 'wip:      🚧  正在开发中',
-        emoji: ':construction:',
+        emoji: ':construction:'
       },
       {
         value: 'workflow',
         name: 'workflow: 👷  工作流程改进',
-        emoji: ':construction_worker:',
+        emoji: ':construction_worker:'
       },
       {
         value: 'types',
         name: 'types:    🏷️   类型定义文件修改',
-        emoji: ':label:',
-      },
+        emoji: ':label:'
+      }
     ],
-    useEmoji: true,
-  },
+    useEmoji: true
+  }
 }

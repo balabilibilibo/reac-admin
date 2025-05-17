@@ -4,9 +4,7 @@ import { useFullscreen } from 'ahooks'
 import { useState } from 'react'
 
 const FullScreen: React.FC = () => {
-  const [isFullscreen, { toggleFullscreen }] = useFullscreen(
-    () => document.documentElement
-  )
+  const [isFullscreen, { toggleFullscreen }] = useFullscreen(() => document.documentElement)
   const [isOpen, setIsOpen] = useState(false)
 
   const handleClick = () => {
@@ -15,14 +13,9 @@ const FullScreen: React.FC = () => {
   }
 
   return (
-    <Tooltip
-      placement='bottom'
-      open={isOpen}
-      title={isFullscreen ? '退出全屏' : '全屏'}
-      onOpenChange={setIsOpen}
-    >
+    <Tooltip placement="bottom" open={isOpen} title={isFullscreen ? '退出全屏' : '全屏'} onOpenChange={setIsOpen}>
       <div
-        className='cursor-pointer h-8 w-8 px-3 flex justify-center dark:hover-bg-white/10  hover:bg-black/5  rounded'
+        className="cursor-pointer h-8 w-8 px-3 flex justify-center dark:hover-bg-white/10  hover:bg-black/5  rounded"
         onClick={handleClick}
       >
         {isFullscreen ? <FullscreenExitOutlined /> : <FullscreenOutlined />}

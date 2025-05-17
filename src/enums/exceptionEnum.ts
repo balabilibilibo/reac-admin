@@ -12,5 +12,5 @@ export enum ExceptionEnum {
   NET_WORK_ERROR = 10000,
 
   // No data on the page. In fact, it is not an exception page
-  PAGE_NOT_DATA = 10100,
+  PAGE_NOT_DATA = 10100
 }

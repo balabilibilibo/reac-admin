@@ -6,7 +6,7 @@ import Sider from './sider'
 
 const LayoutCon: React.FC = () => {
   return (
-    <Layout className='h-full'>
+    <Layout className="h-full">
       <Sider />
       <Layout>
         <Header />

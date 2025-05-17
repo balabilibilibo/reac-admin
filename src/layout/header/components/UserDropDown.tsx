@@ -12,20 +12,16 @@ const items: MenuProps['items'] = [
     key: 'docs',
     icon: <BookOutlined />,
     label: (
-      <a
-        target='_blank'
-        rel='noopener noreferrer'
-        href='https://ant-design.antgroup.com/index-cn'
-      >
+      <a target="_blank" rel="noopener noreferrer" href="https://ant-design.antgroup.com/index-cn">
         文档
       </a>
-    ),
+    )
   },
   {
     key: 'logout',
     icon: <LogoutOutlined />,
-    label: <span>退出系统</span>,
-  },
+    label: <span>退出系统</span>
+  }
 ]
 
 const UserDropDown: React.FC = () => {
@@ -40,7 +36,7 @@ const UserDropDown: React.FC = () => {
       onOk() {
         localStorage.removeItem('react-token')
         navigate('/login')
-      },
+      }
     })
   }
 
@@ -53,9 +49,9 @@ const UserDropDown: React.FC = () => {
   }
   return (
     <Dropdown menu={{ items, onClick: handleMenuClick }}>
-      <div className='cursor-pointer box-content  dark:hover-bg-white/10  hover:bg-black/5  rounded px-3 h-8 flex items-center py-1'>
+      <div className="cursor-pointer box-content  dark:hover-bg-white/10  hover:bg-black/5  rounded px-3 h-8 flex items-center py-1">
         <Avatar size={30} src={avatar} />
-        <span className='ml-2.5'>吧啦哔哩啵</span>
+        <span className="ml-2.5">吧啦哔哩啵</span>
       </div>
     </Dropdown>
   )

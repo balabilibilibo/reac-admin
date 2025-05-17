@@ -10,7 +10,7 @@ const { darkAlgorithm, defaultAlgorithm } = theme
 const App = () => {
   const { isDarkMode, updateDarkMode } = useAppStore()
   const { theme } = useTheme({
-    localStorageKey: 'themeMode',
+    localStorageKey: 'themeMode'
   })
 
   useEffect(() => {
@@ -25,16 +25,16 @@ const App = () => {
         algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm,
         components: {
           Layout: {
-            headerHeight: 48,
+            headerHeight: 48
           },
           Menu: {
-            subMenuItemBg: '#141414',
+            subMenuItemBg: '#141414'
           },
           Form: {},
           Descriptions: {
-            titleMarginBottom: 10,
-          },
-        },
+            titleMarginBottom: 10
+          }
+        }
       }}
     >
       <RouterProvider router={router}></RouterProvider>

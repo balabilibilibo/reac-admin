@@ -13,14 +13,14 @@ export default defineConfig({
   plugins: [react(), UnoCSS()],
   server: {
     host: true,
-    open: true,
+    open: true
   },
   resolve: {
-    alias: [{ find: '@/', replacement: pathResolve('src') + '/' }],
+    alias: [{ find: '@/', replacement: pathResolve('src') + '/' }]
   },
   define: {
     __APP_INFO__: {
-      pkg: await readPackageJSON(pathResolve('package.json')),
-    },
-  },
+      pkg: await readPackageJSON(pathResolve('package.json'))
+    }
+  }
 })

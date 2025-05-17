@@ -1,9 +1,4 @@
-import {
-  InfoCircleOutlined,
-  DashboardOutlined,
-  MenuOutlined,
-  ExceptionOutlined,
-} from '@ant-design/icons'
+import { InfoCircleOutlined, DashboardOutlined, MenuOutlined, ExceptionOutlined } from '@ant-design/icons'
 import { Menu } from 'antd'
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -32,13 +27,13 @@ const SiderMenu: React.FC = () => {
       children: [
         {
           key: '/dashboard/analysis',
-          label: '分析页',
+          label: '分析页'
         },
         {
           key: '/dashboard/workbench',
-          label: '工作台',
-        },
-      ],
+          label: '工作台'
+        }
+      ]
     },
     {
       key: '/menu',
@@ -51,13 +46,13 @@ const SiderMenu: React.FC = () => {
           children: [
             {
               key: '/menu/menu1/menu1-1',
-              label: 'Menu1-1',
+              label: 'Menu1-1'
             },
             {
               key: '/menu/menu1/menu1-2',
-              label: 'Menu1-2',
-            },
-          ],
+              label: 'Menu1-2'
+            }
+          ]
         },
         {
           key: '/menu/menu2',
@@ -65,7 +60,7 @@ const SiderMenu: React.FC = () => {
           children: [
             {
               key: '/menu/menu2/menu2-1',
-              label: 'Menu2-1',
+              label: 'Menu2-1'
             },
             {
               key: '/menu/menu2/menu2-2',
@@ -73,13 +68,13 @@ const SiderMenu: React.FC = () => {
               children: [
                 {
                   key: '/menu/menu2/menu2-2/menu2-2-1',
-                  label: 'Menu2-2-1',
-                },
-              ],
-            },
-          ],
-        },
-      ],
+                  label: 'Menu2-2-1'
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       key: '/exception',
@@ -88,31 +83,31 @@ const SiderMenu: React.FC = () => {
       children: [
         {
           key: '/exception/403',
-          label: '403',
+          label: '403'
         },
         {
           key: '/exception/404',
-          label: '404',
+          label: '404'
         },
         {
           key: '/exception/500',
-          label: '500',
+          label: '500'
         },
         {
           key: '/exception/net-work-error',
-          label: '网络错误',
+          label: '网络错误'
         },
         {
           key: '/exception/no-data',
-          label: '无数据',
-        },
-      ],
+          label: '无数据'
+        }
+      ]
     },
     {
       key: '/about',
       icon: <InfoCircleOutlined />,
-      label: '关于',
-    },
+      label: '关于'
+    }
   ]
 
   const findParentKeys = (nodes: MenuItem[], target: string) => {
@@ -131,7 +126,7 @@ const SiderMenu: React.FC = () => {
       if (node.children) {
         const data = node.children.map((child: any) => ({
           ...child,
-          parentKeys: [node.key, ...(node.parentKeys || [])],
+          parentKeys: [node.key, ...(node.parentKeys || [])]
         }))
         // 将子节点添加到list中，以便下一次循环
         list.push(...data)
@@ -180,7 +175,7 @@ const SiderMenu: React.FC = () => {
   return (
     <Menu
       theme={isDarkMode ? 'light' : 'dark'}
-      mode='inline'
+      mode="inline"
       items={items}
       selectedKeys={selectedKeys}
       openKeys={openKeys}

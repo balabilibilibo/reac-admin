@@ -18,11 +18,11 @@ import About from '@/views/about'
 const constRoutes: RouteObject[] = [
   {
     path: '/',
-    element: <Navigate to='/login' replace={true} />,
+    element: <Navigate to="/login" replace={true} />
   },
   {
     path: '/login',
-    Component: Login,
+    Component: Login
   },
   {
     path: '',
@@ -34,13 +34,13 @@ const constRoutes: RouteObject[] = [
         children: [
           {
             path: 'analysis',
-            element: <Analysis />,
+            element: <Analysis />
           },
           {
             path: 'workbench',
-            element: <Workbench />,
-          },
-        ],
+            element: <Workbench />
+          }
+        ]
       },
       {
         path: '/menu',
@@ -50,33 +50,33 @@ const constRoutes: RouteObject[] = [
             children: [
               {
                 path: 'menu1-1',
-                element: <Menu11 />,
+                element: <Menu11 />
               },
               {
                 path: 'menu1-2',
-                element: <Menu12 />,
-              },
-            ],
+                element: <Menu12 />
+              }
+            ]
           },
           {
             path: 'menu2',
             children: [
               {
                 path: 'menu2-1',
-                element: <Menu21 />,
+                element: <Menu21 />
               },
               {
                 path: 'menu2-2',
                 children: [
                   {
                     path: 'menu2-2-1',
-                    element: <Menu221 />,
-                  },
-                ],
-              },
-            ],
-          },
-        ],
+                    element: <Menu221 />
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         path: '/about',
@@ -93,45 +93,45 @@ const constRoutes: RouteObject[] = [
             //     data: '132131',
             //   }
             // },
-            element: <About />,
-          },
-        ],
+            element: <About />
+          }
+        ]
       },
       {
         path: 'exception',
         children: [
           {
             path: '403',
-            element: <Exception status={ExceptionEnum.PAGE_NOT_ACCESS} />,
+            element: <Exception status={ExceptionEnum.PAGE_NOT_ACCESS} />
           },
           {
             path: '404',
-            element: <Exception status={ExceptionEnum.PAGE_NOT_FOUND} />,
+            element: <Exception status={ExceptionEnum.PAGE_NOT_FOUND} />
           },
           {
             path: '500',
-            element: <Exception status={ExceptionEnum.ERROR} />,
+            element: <Exception status={ExceptionEnum.ERROR} />
           },
           {
             path: 'net-work-error',
-            element: <Exception status={ExceptionEnum.NET_WORK_ERROR} />,
+            element: <Exception status={ExceptionEnum.NET_WORK_ERROR} />
           },
           {
             path: 'no-data',
-            element: <Exception status={ExceptionEnum.PAGE_NOT_DATA} />,
-          },
-        ],
+            element: <Exception status={ExceptionEnum.PAGE_NOT_DATA} />
+          }
+        ]
       },
       {
         children: [
           {
             path: '*',
-            element: <NotFound />,
-          },
-        ],
-      },
-    ],
-  },
+            element: <NotFound />
+          }
+        ]
+      }
+    ]
+  }
 ]
 
 const router = createHashRouter(constRoutes)

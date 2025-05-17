@@ -4,7 +4,7 @@ import { useTheme } from 'ahooks'
 const ThemeSwitch: React.FC = () => {
   const { isDarkMode, updateDarkMode } = useAppStore()
   const { setThemeMode } = useTheme({
-    localStorageKey: 'themeMode',
+    localStorageKey: 'themeMode'
   })
   const handleToogleMode = () => {
     updateDarkMode(isDarkMode ? false : true)
@@ -14,7 +14,7 @@ const ThemeSwitch: React.FC = () => {
   }
   return (
     <div
-      className='cursor-pointer h-8 w-8 px-3 flex justify-center dark:hover-bg-white/10  hover:bg-black/5 rounded'
+      className="cursor-pointer h-8 w-8 px-3 flex justify-center dark:hover-bg-white/10  hover:bg-black/5 rounded"
       onClick={handleToogleMode}
     >
       {isDarkMode ? <MoonOutlined /> : <SunOutlined />}

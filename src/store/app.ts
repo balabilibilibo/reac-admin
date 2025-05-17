@@ -11,5 +11,5 @@ export const useAppStore = create<AppState>((set) => ({
   collapsed: false,
   setCollapsed: () => set((state) => ({ collapsed: !state.collapsed })),
   isDarkMode: false,
-  updateDarkMode: (flag: boolean) => set({ isDarkMode: flag }),
+  updateDarkMode: (flag: boolean) => set({ isDarkMode: flag })
 }))
