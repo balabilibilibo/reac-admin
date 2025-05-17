@@ -2,7 +2,7 @@ import { defineFakeRoute } from 'vite-plugin-fake-server'
 
 export default defineFakeRoute([
   {
-    url: '/mock/getToken',
+    url: '/basic-api/getToken',
     method: 'get',
     response: () => {
       return {
@@ -11,6 +11,18 @@ export default defineFakeRoute([
           token: 'token'
         },
         msg: '登录成功！'
+      }
+    }
+  },
+  {
+    url: '/basic-api/test',
+    method: 'get',
+    statusCode: 400,
+    response: () => {
+      return {
+        code: 200,
+        data: null,
+        msg: 'token 失效！'
       }
     }
   }

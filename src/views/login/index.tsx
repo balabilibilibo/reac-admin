@@ -4,10 +4,11 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import loginBg from '../../assets/login.svg'
 import ThemeSwitch from './components/ThemeSwitch'
+import { loginApi } from '@/api/user/index'
 
 type FieldType = {
-  username?: string
-  password?: string
+  username: string
+  password: string
   remember?: string
 }
 
@@ -15,9 +16,10 @@ const Login: React.FC = () => {
   const navigate = useNavigate()
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
     console.log('Success:', values)
-    const { username } = values
-    const { data: res } = await fetch('/mock/getToken').then((res) => res.json())
-    localStorage.setItem('react-token', res.token)
+    const { username, password } = values
+    const res = await loginApi({ username, password })
+    console.log('res', res)
+    localStorage.setItem('react-token', res.data.token)
     await navigate('/dashboard/analysis')
     notification.success({
       message: '登录成功',
