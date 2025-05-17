@@ -16,7 +16,8 @@ const Login: React.FC = () => {
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
     console.log('Success:', values)
     const { username } = values
-    localStorage.setItem('react-token', 'react-token')
+    const { data: res } = await fetch('/mock/getToken').then((res) => res.json())
+    localStorage.setItem('react-token', res.token)
     await navigate('/dashboard/analysis')
     notification.success({
       message: '登录成功',
