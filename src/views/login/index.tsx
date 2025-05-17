@@ -1,8 +1,11 @@
-import React from 'react'
+import { useAppStore } from '@/store/app'
+import { MoonOutlined, SunOutlined } from '@ant-design/icons'
+import { useTheme } from 'ahooks'
 import type { FormProps } from 'antd'
 import { Button, Checkbox, Form, Input, notification } from 'antd'
-import loginBg from '../../assets/login.svg'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import loginBg from '../../assets/login.svg'
 
 type FieldType = {
   username?: string
@@ -11,6 +14,10 @@ type FieldType = {
 }
 
 const Login: React.FC = () => {
+  const { isDarkMode, updateDarkMode } = useAppStore()
+  const { setThemeMode } = useTheme({
+    localStorageKey: 'themeMode'
+  })
   const navigate = useNavigate()
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
     console.log('Success:', values)
@@ -23,13 +30,21 @@ const Login: React.FC = () => {
     })
   }
 
+  const handleSwitchTheme = () => {
+    const theme = isDarkMode ? 'light' : 'dark'
+    document.documentElement.classList.toggle('dark')
+    document.documentElement.dataset.theme = theme
+    setThemeMode(theme)
+    updateDarkMode(isDarkMode ? false : true)
+  }
+
   return (
-    <div className="flex h-full dark:bg-[#1f1f1f]">
+    <div className="flex h-full dark:bg-[#1f1f1f] relative">
       {/* 左侧占位图 */}
       <div className="flex-1 bg-[#1677ff] dark:bg-[#1f1f1f] h-full flex justify-center items-center">
         <div className="flex flex-col  items-center">
           <img src={loginBg} alt="" className="w-2/5" />
-          <div className="text-3xl font-bold  tracking-widest  text-white mt-10">中后台管理系统</div>
+          <div className="text-3xl font-bold tracking-widest  text-white mt-10">中后台管理系统</div>
           <div className="mt-4 text-white ">使用 React、React Router、Antd、Zustand 搭建的一个简易后台管理系统</div>
         </div>
       </div>
@@ -66,6 +81,19 @@ const Login: React.FC = () => {
               </Button>
             </Form.Item>
           </Form>
+        </div>
+      </div>
+      {/* 切换主题 */}
+      <div className="absolute right-4 top-4">
+        <div
+          className="w-[50px] h-[26px] px-[6px] rounded-[30px] cursor-pointer bg-[#151515] flex items-center justify-between dark:border border-[#c4bcbc]"
+          onClick={handleSwitchTheme}
+        >
+          <div
+            className={`absolute w-[18px] h-[18px] bg-white rounded-full will-change-transform transition-property-all transition-duration-500 transition-delay-100 ${isDarkMode ? 'translate-x-[calc(100%+2px)]' : null}`}
+          ></div>
+          <MoonOutlined className="text-white" />
+          <SunOutlined className="text-white" />
         </div>
       </div>
     </div>
