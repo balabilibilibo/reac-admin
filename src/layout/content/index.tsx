@@ -6,7 +6,7 @@ const Content: React.FC = () => {
   } = theme.useToken()
   return (
     <Layout.Content
-      className="bg-[#f5f5f5] dark:bg-black overflow-y-auto"
+      className="overflow-y-auto bg-[#f5f5f5] dark:bg-black"
       style={{
         margin: 10,
         minHeight: 280,

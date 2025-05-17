@@ -14,7 +14,7 @@ const ThemeSwitch: React.FC = () => {
   }
   return (
     <div
-      className="cursor-pointer h-8 w-8 px-3 flex justify-center dark:hover-bg-white/10  hover:bg-black/5 rounded"
+      className="dark:hover-bg-white/10 flex h-8 w-8 cursor-pointer justify-center rounded px-3 hover:bg-black/5"
       onClick={handleToogleMode}
     >
       {isDarkMode ? <MoonOutlined /> : <SunOutlined />}

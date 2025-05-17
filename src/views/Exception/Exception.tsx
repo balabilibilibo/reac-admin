@@ -97,11 +97,11 @@ const Exception = (props: Props) => {
     return null
   }
   return (
-    <div className="flex items-center justify-center h-full bg-white dark:bg-black flex-col">
+    <div className="flex h-full flex-col items-center justify-center bg-white dark:bg-black">
       {renderIcon()}
-      <div className="text-center mt-[-80px]">
+      <div className="mt-[-80px] text-center">
         <div className="text-2xl">{props.title || title}</div>
-        <div className="text-black/45 dark:text-white/45 my-5">{props.subTitle || subTitle}</div>
+        <div className="my-5 text-black/45 dark:text-white/45">{props.subTitle || subTitle}</div>
         <Button type="primary" onClick={isRefresh ? refresh : goHome}>
           {props.btnText || btnText}
         </Button>

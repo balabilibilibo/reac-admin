@@ -39,5 +39,5 @@ export default {
   // 格式化嵌入的内容
   embeddedLanguageFormatting: 'auto',
   // 使用 prettier-plugin-packagejson 插件合理排序 package.json 中 key 的顺序
-  plugins: ['prettier-plugin-packagejson']
+  plugins: ['prettier-plugin-packagejson', 'prettier-plugin-tailwindcss']
 }

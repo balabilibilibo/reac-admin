@@ -17,11 +17,11 @@ const ThemeSwitch = () => {
   return (
     <div className="absolute right-4 top-4">
       <div
-        className="w-[50px] h-[26px] px-[6px] rounded-[30px] cursor-pointer bg-[#151515] flex items-center justify-between dark:border border-[#c4bcbc]"
+        className="flex h-[26px] w-[50px] cursor-pointer items-center justify-between rounded-[30px] border-[#c4bcbc] bg-[#151515] px-[6px] dark:border"
         onClick={handleSwitchTheme}
       >
         <div
-          className={`absolute w-[18px] h-[18px] bg-white rounded-full will-change-transform transition-property-all transition-duration-500 transition-delay-100 ${isDarkMode ? 'translate-x-[calc(100%+2px)]' : null}`}
+          className={`transition-property-all transition-duration-500 transition-delay-100 absolute h-[18px] w-[18px] rounded-full bg-white will-change-transform ${isDarkMode ? 'translate-x-[calc(100%+2px)]' : null}`}
         ></div>
         <MoonOutlined className="text-white" />
         <SunOutlined className="text-white" />

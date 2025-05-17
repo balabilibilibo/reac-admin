@@ -8,11 +8,11 @@ const NotFound = () => {
     navigate('/dashboard/analysis')
   }
   return (
-    <div className="flex items-center justify-center h-full bg-white dark:bg-black flex flex-col">
+    <div className="flex h-full flex-col items-center justify-center bg-white dark:bg-black">
       <img width={400} src={notFoundSrc} title="抱歉你访问的页面不存在哦" />
-      <div className="text-center mt-[-80px]">
+      <div className="mt-[-80px] text-center">
         <div className="text-2xl">404</div>
-        <div className="text-black/45 dark:text-white/45 my-5">抱歉你访问的页面不存在哦</div>
+        <div className="my-5 text-black/45 dark:text-white/45">抱歉你访问的页面不存在哦</div>
         <Button type="primary" onClick={goHome}>
           返回首页
         </Button>

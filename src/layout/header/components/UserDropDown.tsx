@@ -49,7 +49,7 @@ const UserDropDown: React.FC = () => {
   }
   return (
     <Dropdown menu={{ items, onClick: handleMenuClick }}>
-      <div className="cursor-pointer box-content  dark:hover-bg-white/10  hover:bg-black/5  rounded px-3 h-8 flex items-center py-1">
+      <div className="dark:hover-bg-white/10 box-content flex h-8 cursor-pointer items-center rounded px-3 py-1 hover:bg-black/5">
         <Avatar size={30} src={avatar} />
         <span className="ml-2.5">吧啦哔哩啵</span>
       </div>
