@@ -1,11 +1,9 @@
-import { useAppStore } from '@/store/app'
-import { MoonOutlined, SunOutlined } from '@ant-design/icons'
-import { useTheme } from 'ahooks'
 import type { FormProps } from 'antd'
 import { Button, Checkbox, Form, Input, notification } from 'antd'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import loginBg from '../../assets/login.svg'
+import ThemeSwitch from './components/ThemeSwitch'
 
 type FieldType = {
   username?: string
@@ -14,10 +12,6 @@ type FieldType = {
 }
 
 const Login: React.FC = () => {
-  const { isDarkMode, updateDarkMode } = useAppStore()
-  const { setThemeMode } = useTheme({
-    localStorageKey: 'themeMode'
-  })
   const navigate = useNavigate()
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
     console.log('Success:', values)
@@ -28,14 +22,6 @@ const Login: React.FC = () => {
       message: '登录成功',
       description: `欢迎回来：${username}`
     })
-  }
-
-  const handleSwitchTheme = () => {
-    const theme = isDarkMode ? 'light' : 'dark'
-    document.documentElement.classList.toggle('dark')
-    document.documentElement.dataset.theme = theme
-    setThemeMode(theme)
-    updateDarkMode(isDarkMode ? false : true)
   }
 
   return (
@@ -84,18 +70,7 @@ const Login: React.FC = () => {
         </div>
       </div>
       {/* 切换主题 */}
-      <div className="absolute right-4 top-4">
-        <div
-          className="w-[50px] h-[26px] px-[6px] rounded-[30px] cursor-pointer bg-[#151515] flex items-center justify-between dark:border border-[#c4bcbc]"
-          onClick={handleSwitchTheme}
-        >
-          <div
-            className={`absolute w-[18px] h-[18px] bg-white rounded-full will-change-transform transition-property-all transition-duration-500 transition-delay-100 ${isDarkMode ? 'translate-x-[calc(100%+2px)]' : null}`}
-          ></div>
-          <MoonOutlined className="text-white" />
-          <SunOutlined className="text-white" />
-        </div>
-      </div>
+      <ThemeSwitch />
     </div>
   )
 }
