@@ -1,6 +1,6 @@
 import { RouterProvider } from 'react-router-dom'
 import { ConfigProvider, theme } from 'antd'
-import router from './router'
+import { router } from './router'
 import '@/styles/index.less'
 import { useAppStore } from '@/store/app'
 import { useTheme } from 'ahooks'

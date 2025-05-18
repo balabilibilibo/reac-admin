@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import { message } from 'antd'
+import { router } from '@/router'
 
 interface Result<T = any> {
   code: number
@@ -50,7 +51,7 @@ instance.interceptors.response.use(
       case 401:
         errMessage = msg || '账号未授权!'
         localStorage.removeItem('react-token')
-        window.location.hash = '/login'
+        router.navigate('/login', { replace: true })
         break
       case 403:
         errMessage = '用户得到授权，但是访问是被禁止的!'

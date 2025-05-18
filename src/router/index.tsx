@@ -134,6 +134,4 @@ const constRoutes: RouteObject[] = [
   }
 ]
 
-const router = createHashRouter(constRoutes)
-
-export default router
+export const router = createHashRouter(constRoutes)

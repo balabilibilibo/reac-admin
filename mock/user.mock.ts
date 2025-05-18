@@ -17,7 +17,7 @@ export default defineFakeRoute([
   {
     url: '/basic-api/test',
     method: 'get',
-    statusCode: 400,
+    statusCode: 401,
     response: () => {
       return {
         code: 200,
