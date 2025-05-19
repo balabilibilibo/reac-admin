@@ -1,6 +1,8 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import { message } from 'antd'
 import { router } from '@/router'
+import { PageEnum } from '@/enums/pageEnum'
+import { TOKEN_KEY } from '@/enums/cacheEnum'
 
 interface Result<T = any> {
   code: number
@@ -50,8 +52,8 @@ instance.interceptors.response.use(
         break
       case 401:
         errMessage = msg || '账号未授权!'
-        localStorage.removeItem('react-token')
-        router.navigate('/login', { replace: true })
+        localStorage.removeItem(TOKEN_KEY)
+        router.navigate(PageEnum.BASE_LOGIN, { replace: true })
         break
       case 403:
         errMessage = '用户得到授权，但是访问是被禁止的!'

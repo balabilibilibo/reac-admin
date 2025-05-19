@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import loginBg from '../../assets/login.svg'
 import ThemeSwitch from './components/ThemeSwitch'
 import { loginApi } from '@/api/user/index'
+import { PageEnum } from '@/enums/pageEnum'
+import { TOKEN_KEY } from '@/enums/cacheEnum'
 
 type FieldType = {
   username: string
@@ -19,8 +21,8 @@ const Login: React.FC = () => {
     const { username, password } = values
     const res = await loginApi({ username, password })
     console.log('res', res)
-    localStorage.setItem('react-token', res.data.token)
-    await navigate('/dashboard/analysis')
+    localStorage.setItem(TOKEN_KEY, res.data.token)
+    await navigate(PageEnum.BASE_HOME)
     notification.success({
       message: '登录成功',
       description: `欢迎回来：${username}`

@@ -1,8 +1,9 @@
 import { Avatar, Dropdown, MenuProps, Modal } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { BookOutlined, LogoutOutlined } from '@ant-design/icons'
-
 import avatar from '@/assets/avatar.gif'
+import { TOKEN_KEY } from '@/enums/cacheEnum'
+import { PageEnum } from '@/enums/pageEnum'
 
 type MenuEvent = 'logout' | 'docs'
 const { confirm } = Modal
@@ -34,8 +35,8 @@ const UserDropDown: React.FC = () => {
       cancelText: '取消',
       centered: true,
       onOk() {
-        localStorage.removeItem('react-token')
-        navigate('/login')
+        localStorage.removeItem(TOKEN_KEY)
+        navigate(PageEnum.BASE_LOGIN)
       }
     })
   }

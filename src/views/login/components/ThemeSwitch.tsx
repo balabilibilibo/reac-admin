@@ -1,11 +1,12 @@
 import { useAppStore } from '@/store/app'
 import { MoonOutlined, SunOutlined } from '@ant-design/icons'
 import { useTheme } from 'ahooks'
+import { APP_THEME_KEY } from '@/enums/cacheEnum'
 
 const ThemeSwitch = () => {
   const { isDarkMode, updateDarkMode } = useAppStore()
   const { setThemeMode } = useTheme({
-    localStorageKey: 'themeMode'
+    localStorageKey: APP_THEME_KEY
   })
   const handleSwitchTheme = () => {
     const theme = isDarkMode ? 'light' : 'dark'

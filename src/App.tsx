@@ -5,12 +5,13 @@ import '@/styles/index.less'
 import { useAppStore } from '@/store/app'
 import { useTheme } from 'ahooks'
 import { useEffect } from 'react'
+import { APP_THEME_KEY } from '@/enums/cacheEnum'
 
 const { darkAlgorithm, defaultAlgorithm } = theme
 const App = () => {
   const { isDarkMode, updateDarkMode } = useAppStore()
   const { theme } = useTheme({
-    localStorageKey: 'themeMode'
+    localStorageKey: APP_THEME_KEY
   })
 
   useEffect(() => {

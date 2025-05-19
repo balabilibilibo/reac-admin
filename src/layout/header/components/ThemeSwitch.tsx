@@ -1,10 +1,11 @@
 import { useAppStore } from '@/store/app'
 import { SunOutlined, MoonOutlined } from '@ant-design/icons'
 import { useTheme } from 'ahooks'
+import { APP_THEME_KEY } from '@/enums/cacheEnum'
 const ThemeSwitch: React.FC = () => {
   const { isDarkMode, updateDarkMode } = useAppStore()
   const { setThemeMode } = useTheme({
-    localStorageKey: 'themeMode'
+    localStorageKey: APP_THEME_KEY
   })
   const handleToogleMode = () => {
     updateDarkMode(isDarkMode ? false : true)
