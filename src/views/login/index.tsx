@@ -30,9 +30,9 @@ const Login: React.FC = () => {
   }
 
   return (
-    <div className="relative flex h-full dark:bg-[#1f1f1f]">
+    <div className="relative flex h-full dark:bg-[#141414]">
       {/* 左侧占位图 */}
-      <div className="flex h-full flex-1 items-center justify-center bg-[#1677ff] dark:bg-[#1f1f1f]">
+      <div className="flex h-full flex-1 items-center justify-center bg-[#1677ff] dark:bg-[#141414]">
         <div className="flex flex-col items-center">
           <img src={loginBg} alt="" className="w-2/5" />
           <div className="mt-10 text-3xl font-bold tracking-widest text-white">中后台管理系统</div>
