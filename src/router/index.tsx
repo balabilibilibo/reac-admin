@@ -12,7 +12,8 @@ import Menu21 from '@/views/menu/menu2/menu2-1'
 import Menu221 from '@/views/menu/menu2/menu2-2/menu2-2-1'
 import NotFound from '@/views/exception/NotFound'
 import ErrorBoundary from '@/views/exception/ErrorBoundary'
-import Exception from '@/views/exception/Exception' */
+import Exception from '@/views/exception/Exception' 
+import About from '@/views/about'*/
 const Login = lazy(() => import('@/views/login'))
 const LayoutCon = lazy(() => import('@/layout/index'))
 const AuthGuard = lazy(() => import('@/router/AuthGuard'))
@@ -25,8 +26,7 @@ const Menu221 = lazy(() => import('@/views/menu/menu2/menu2-2/menu2-2-1'))
 const ErrorBoundary = lazy(() => import('@/views/exception/ErrorBoundary'))
 const Exception = lazy(() => import('@/views/exception/Exception'))
 const NotFound = lazy(() => import('@/views/exception/NotFound'))
-
-import About from '@/views/about'
+const About = lazy(() => import('@/views/about'))
 
 const constRoutes: RouteObject[] = [
   {
