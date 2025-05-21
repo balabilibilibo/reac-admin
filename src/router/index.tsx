@@ -1,6 +1,7 @@
 import { createHashRouter, RouteObject, Navigate } from 'react-router-dom'
+import { lazy } from 'react'
 import { ExceptionEnum } from '@/enums/exceptionEnum'
-import Login from '@/views/login'
+/* import Login from '@/views/login'
 import LayoutCon from '@/layout/index'
 import AuthGuard from '@/router/AuthGuard'
 import Analysis from '@/views/dashboard/analysis'
@@ -11,7 +12,19 @@ import Menu21 from '@/views/menu/menu2/menu2-1'
 import Menu221 from '@/views/menu/menu2/menu2-2/menu2-2-1'
 import NotFound from '@/views/exception/NotFound'
 import ErrorBoundary from '@/views/exception/ErrorBoundary'
-import Exception from '@/views/exception/Exception'
+import Exception from '@/views/exception/Exception' */
+const Login = lazy(() => import('@/views/login'))
+const LayoutCon = lazy(() => import('@/layout/index'))
+const AuthGuard = lazy(() => import('@/router/AuthGuard'))
+const Analysis = lazy(() => import('@/views/dashboard/analysis'))
+const Workbench = lazy(() => import('@/views/dashboard/workbench'))
+const Menu11 = lazy(() => import('@/views/menu/menu1/menu1-1'))
+const Menu12 = lazy(() => import('@/views/menu/menu1/menu1-2'))
+const Menu21 = lazy(() => import('@/views/menu/menu2/menu2-1'))
+const Menu221 = lazy(() => import('@/views/menu/menu2/menu2-2/menu2-2-1'))
+const ErrorBoundary = lazy(() => import('@/views/exception/ErrorBoundary'))
+const Exception = lazy(() => import('@/views/exception/Exception'))
+const NotFound = lazy(() => import('@/views/exception/NotFound'))
 
 import About from '@/views/about'
 
