@@ -31,7 +31,7 @@ const About = lazy(() => import('@/views/about'))
 const constRoutes: RouteObject[] = [
   {
     path: '/',
-    element: <Navigate to="/login" replace={true} />
+    element: <Navigate to="/dashboard" replace={true} />
   },
   {
     path: '/login',

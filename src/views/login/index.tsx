@@ -4,9 +4,11 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import loginBg from '../../assets/login.svg'
 import ThemeSwitch from './components/ThemeSwitch'
-import { loginApi } from '@/api/user/index'
+import { getUserInfo, loginApi } from '@/api/user/index'
 import { PageEnum } from '@/enums/pageEnum'
-import { TOKEN_KEY } from '@/enums/cacheEnum'
+import { getMenuList } from '@/api/menu/index'
+import { useUserStore } from '@/store/user'
+import { usePermissionStore } from '@/store/permission'
 
 type FieldType = {
   username: string
@@ -16,12 +18,20 @@ type FieldType = {
 
 const Login: React.FC = () => {
   const navigate = useNavigate()
+  const { setToken, setUserInfo } = useUserStore()
+  const { setMenuList } = usePermissionStore()
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
     console.log('Success:', values)
     const { username, password } = values
-    const res = await loginApi({ username, password })
-    console.log('res', res)
-    localStorage.setItem(TOKEN_KEY, res.data.token)
+    const {
+      data: { token }
+    } = await loginApi({ username, password })
+    setToken(token)
+    const { data: res } = await getUserInfo()
+    setUserInfo(res)
+    const { data: menuList } = await getMenuList()
+    console.log('menuList', menuList)
+    setMenuList(menuList)
     await navigate(PageEnum.BASE_HOME)
     notification.success({
       message: '登录成功',
