@@ -1,6 +1,7 @@
 import { Layout, theme } from 'antd'
 import { Outlet } from 'react-router-dom'
 import { Suspense } from 'react'
+import { ProgressBar } from '@/components/ProgressBar'
 const Content: React.FC = () => {
   const {
     token: { borderRadiusLG }
@@ -16,6 +17,7 @@ const Content: React.FC = () => {
     >
       <div className="h-full">
         <Suspense fallback={<div>Loading...</div>}>
+          <ProgressBar />
           <Outlet />
         </Suspense>
       </div>
