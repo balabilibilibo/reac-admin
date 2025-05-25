@@ -2,6 +2,11 @@
   "name": "react-admin",
   "version": "0.0.0",
   "private": true,
+  "author": {
+    "name": "吧啦哔哩啵",
+    "email": "balabilibo@163.com",
+    "url": "https://gitee.com/balabilibo/nest-server/tree/react-admin/"
+  },
   "type": "module",
   "scripts": {
     "build": "tsc -b && vite build",

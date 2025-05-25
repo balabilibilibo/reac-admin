@@ -4,6 +4,11 @@ declare global {
     pkg: {
       name: string
       version: string
+      author: {
+        name: string
+        email: string
+        url: string
+      }
       dependencies: Record<string, string>
       devDependencies: Record<string, string>
     }

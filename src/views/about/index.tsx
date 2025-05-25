@@ -1,6 +1,6 @@
 import { Descriptions, DescriptionsProps, Tag, Button } from 'antd'
 const { pkg } = __APP_INFO__
-const { version } = pkg
+const { version, author } = pkg
 const devSchema: DescriptionsProps['items'] = []
 const prodSchema: DescriptionsProps['items'] = []
 const infoSchema: DescriptionsProps['items'] = [
@@ -18,12 +18,7 @@ const infoSchema: DescriptionsProps['items'] = [
     key: 'gitee',
     label: 'Gitee',
     children: (
-      <Button
-        className="h-0 p-0"
-        type="link"
-        href="https://gitee.com/balabilibo/nest-server/tree/react-admin/"
-        target="_blank"
-      >
+      <Button className="h-0 p-0" type="link" href={author.url} target="_blank">
         Gitee
       </Button>
     )
@@ -31,7 +26,7 @@ const infoSchema: DescriptionsProps['items'] = [
   {
     key: 'author',
     label: '作者',
-    children: '吧啦哔哩啵'
+    children: author.name
   }
 ]
 
