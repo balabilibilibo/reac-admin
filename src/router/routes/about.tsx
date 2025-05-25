@@ -10,7 +10,7 @@ export const about: RouteObject = {
   children: [
     {
       index: true,
-      element: <About />
+      Component: About
     }
   ]
 }

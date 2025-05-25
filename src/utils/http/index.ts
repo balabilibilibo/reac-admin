@@ -1,6 +1,5 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import { message } from 'antd'
-import { router } from '@/router'
 import { PageEnum } from '@/enums/pageEnum'
 import { TOKEN_KEY } from '@/enums/cacheEnum'
 
@@ -53,7 +52,7 @@ instance.interceptors.response.use(
       case 401:
         errMessage = msg || '账号未授权!'
         localStorage.removeItem(TOKEN_KEY)
-        router.navigate(PageEnum.BASE_LOGIN, { replace: true })
+        window.location.replace(PageEnum.BASE_LOGIN)
         break
       case 403:
         errMessage = '用户得到授权，但是访问是被禁止的!'

@@ -3,7 +3,7 @@ import { defineFakeRoute } from 'vite-plugin-fake-server'
 const menuList = [
   {
     name: 'Dashboard',
-    path: 'system',
+    path: 'dashboard',
     icon: 'ion:settings-outline',
     component: 'Layout',
     children: [
@@ -25,7 +25,7 @@ const menuList = [
     name: 'Menu',
     path: 'menu',
     icon: 'ion:settings-outline',
-    component: '',
+    component: 'Layout',
     children: [
       {
         name: 'Menu1',
@@ -76,51 +76,51 @@ const menuList = [
         ]
       }
     ]
-  },
-  {
-    name: '异常页',
-    path: 'exception',
-    icon: '',
-    component: '',
-    children: [
-      {
-        name: '403',
-        path: '403',
-        icon: null,
-        component: '/exception/403/index'
-      },
-      {
-        name: '404',
-        path: '404',
-        icon: null,
-        component: '/exception/404/index'
-      },
-      {
-        name: '500',
-        path: '500',
-        icon: null,
-        component: '/exception/500/index'
-      },
-      {
-        name: '网络错误',
-        path: 'net-work-error',
-        icon: null,
-        component: '/exception/net-work-error/index'
-      },
-      {
-        name: '无数据',
-        path: 'no-data',
-        icon: null,
-        component: '/exception/no-data/index'
-      }
-    ]
-  },
-  {
-    name: '关于',
-    path: 'about',
-    icon: 'simple-icons:aboutdotme',
-    component: '/views/about/index'
   }
+  // {
+  //   name: '异常页',
+  //   path: 'exception',
+  //   icon: '',
+  //   component: '',
+  //   children: [
+  //     {
+  //       name: '403',
+  //       path: '403',
+  //       icon: null,
+  //       component: '/exception/403/index'
+  //     },
+  //     {
+  //       name: '404',
+  //       path: '404',
+  //       icon: null,
+  //       component: '/exception/404/index'
+  //     },
+  //     {
+  //       name: '500',
+  //       path: '500',
+  //       icon: null,
+  //       component: '/exception/500/index'
+  //     },
+  //     {
+  //       name: '网络错误',
+  //       path: 'net-work-error',
+  //       icon: null,
+  //       component: '/exception/net-work-error/index'
+  //     },
+  //     {
+  //       name: '无数据',
+  //       path: 'no-data',
+  //       icon: null,
+  //       component: '/exception/no-data/index'
+  //     }
+  //   ]
+  // },
+  // {
+  //   name: '关于',
+  //   path: 'about',
+  //   icon: 'simple-icons:aboutdotme',
+  //   component: '/about/index'
+  // }
 ]
 
 export default defineFakeRoute([

@@ -1,11 +1,10 @@
-import { RouterProvider } from 'react-router-dom'
 import { ConfigProvider, theme } from 'antd'
-import { router } from './router'
 import '@/styles/index.less'
 import { useAppStore } from '@/store/app'
 import { useTheme } from 'ahooks'
 import { useEffect } from 'react'
 import { APP_THEME_KEY } from '@/enums/cacheEnum'
+import { Router } from '@/router'
 
 const { darkAlgorithm, defaultAlgorithm } = theme
 const App = () => {
@@ -38,7 +37,7 @@ const App = () => {
         }
       }}
     >
-      <RouterProvider router={router}></RouterProvider>
+      <Router />
     </ConfigProvider>
   )
 }

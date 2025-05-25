@@ -1,9 +1,8 @@
-import { LoginRoute, PageNotFound, RootRoute } from './basic'
-import { dashboard } from './dashboard'
+import { LoginRoute, PageNotFound } from './basic'
 import { about } from './about'
-import { others } from './others'
-import { errors } from './errors'
+// import { dashboard } from './dashboard'
+// import { others } from './others'
+// import { errors } from './errors'
+// const ProtectedRoute = [dashboard, about, others, errors]
 
-const ProtectedRoute = [dashboard, about, others, errors]
-
-export const basicRoutes = [RootRoute, LoginRoute, PageNotFound, ...ProtectedRoute]
+export const basicRoutes = [LoginRoute, PageNotFound, about]

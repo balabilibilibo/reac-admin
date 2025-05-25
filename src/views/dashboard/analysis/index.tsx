@@ -1,6 +1,6 @@
 import { request } from '@/utils/http/index'
 import { Button } from 'antd'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { getMenuList } from '@/api/menu/index'
 const Analysis: React.FC = () => {
   const [menList, setMenuList] = useState<any[]>([])
@@ -12,8 +12,13 @@ const Analysis: React.FC = () => {
 
   const getMenuListData = async () => {
     const { data: menuList } = await getMenuList()
+    console.log('menuList', menuList)
     setMenuList(menuList)
   }
+
+  useEffect(() => {
+    // getMenuListData()
+  }, [])
   return (
     <div>
       Analysis
