@@ -3,14 +3,32 @@ import { basicRoutes } from './routes'
 import { usePermissionStore } from '@/store/permission'
 import { Layout, ErrorBoundary } from '@/router/constant'
 import { PageEnum } from '@/enums/pageEnum'
-import { dynamicRoute } from '@/router/utils'
+import { transformToRoute } from '@/router/utils'
 import { cloneDeep } from 'lodash-es'
+import { useMemo } from 'react'
+
+function handleRedirect(routeList: RouteObject[]) {
+  routeList.forEach((route) => {
+    const { children } = route
+    if (children && children.length) {
+      const firstRoute = children[0]
+      children.unshift({
+        index: true,
+        element: <Navigate to={firstRoute.path!} replace={true} />
+      })
+    }
+  })
+  return routeList
+}
 
 export const Router = () => {
-  const { menuList } = usePermissionStore()
-  const cloneRouteList = cloneDeep(menuList)
-  const routeList = dynamicRoute(cloneRouteList)
-  console.log('routeList', routeList)
+  const { backMenuList } = usePermissionStore()
+  const routeList = useMemo(() => {
+    const menuList = cloneDeep(backMenuList)
+    const routes = transformToRoute(menuList)
+    console.log('routes', routes)
+    return handleRedirect(routes)
+  }, [backMenuList])
 
   const ProtectedRoute: RouteObject = {
     path: '/',

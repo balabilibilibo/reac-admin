@@ -19,7 +19,7 @@ type FieldType = {
 const Login: React.FC = () => {
   const navigate = useNavigate()
   const { setToken, setUserInfo } = useUserStore()
-  const { setMenuList } = usePermissionStore()
+  const { setBackMenuList } = usePermissionStore()
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
     console.log('Success:', values)
     const { username, password } = values
@@ -30,8 +30,7 @@ const Login: React.FC = () => {
     const { data: res } = await getUserInfo()
     setUserInfo(res)
     const { data: menuList } = await getMenuList()
-    console.log('menuList', menuList)
-    setMenuList(menuList)
+    setBackMenuList(menuList)
     await navigate(PageEnum.BASE_HOME)
     notification.success({
       message: '登录成功',

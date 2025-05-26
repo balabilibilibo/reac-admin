@@ -1,8 +1,9 @@
 import { Layout } from '@/router/constant'
+import { cloneDeep } from 'lodash-es'
 import { lazy } from 'react'
 
 const layoutMap = new Map<string, any>()
-layoutMap.set('Layout', Layout)
+layoutMap.set('LAYOUT', Layout)
 const EntryPath = '/src/views'
 
 // 树形数据转成列表数据
@@ -35,19 +36,38 @@ function dynamicImport(component: string) {
 }
 
 // 动态路由
-export function dynamicRoute(menuList: any[]) {
-  const routeList: any[] = treeToList(menuList)
+export function dynamicRoute(routeList: any[]) {
   if (!routeList.length) return []
-  routeList.forEach((item) => {
-    const { component } = item
+  routeList.forEach((route) => {
+    const { component, children } = route
     if (component) {
-      const layoutFound = layoutMap.get(component)
+      const layoutFound = layoutMap.get(component.toUpperCase())
       if (layoutFound) {
-        item.Component = layoutFound
+        route.Component = null
       } else {
-        item.Component = lazy(dynamicImport(component) as any)
+        route.Component = lazy(dynamicImport(component) as any)
       }
     }
+    children && dynamicRoute(children)
   })
+  return routeList
+}
+
+export function transformToRoute(routeList: any[]) {
+  routeList.forEach((route) => {
+    const { component, children } = route
+    if (component) {
+      if (component.toUpperCase() === 'LAYOUT') {
+        route.Component = null
+      } else {
+        route.children = [cloneDeep(route)]
+        route.path = ''
+        route.component = component
+        route.Component = Layout
+      }
+    }
+    children && dynamicRoute(children)
+  })
+
   return routeList
 }
