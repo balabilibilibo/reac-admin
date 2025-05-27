@@ -55,13 +55,13 @@ export function dynamicRoute(routeList: any[]) {
 
 export function transformToRoute(routeList: any[]) {
   routeList.forEach((route) => {
-    const { component, children } = route
+    const { component, children, path } = route
     if (component) {
       if (component.toUpperCase() === 'LAYOUT') {
         route.Component = null
       } else {
         route.children = [cloneDeep(route)]
-        route.path = ''
+        route.path = path
         route.component = component
         route.Component = Layout
       }

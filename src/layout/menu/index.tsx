@@ -1,8 +1,10 @@
 import { InfoCircleOutlined, DashboardOutlined, MenuOutlined, ExceptionOutlined } from '@ant-design/icons'
 import { Menu } from 'antd'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useAppStore } from '@/store/app'
+import { usePermissionStore } from '@/store/permission'
+import { cloneDeep } from 'lodash-es'
 
 interface MenuItem {
   key: string
@@ -11,13 +13,35 @@ interface MenuItem {
   children?: MenuItem[]
   parentKeys?: string[]
 }
+
+function transformToMenu(routeList: any) {
+  routeList = cloneDeep(routeList)
+  function joinPath(routeList: any[], parentPath: string = '') {
+    routeList.forEach((route: any) => {
+      const { path, name, children } = route
+
+      route.key = parentPath + (path.startsWith('/') ? path : `/${path}`)
+      route.label = name
+      route.icon = null
+      if (children && children.length) {
+        joinPath(children, route.key || '')
+      }
+    })
+  }
+  joinPath(routeList)
+  return routeList
+}
 const SiderMenu: React.FC = () => {
   const { isDarkMode } = useAppStore()
+  const { backMenuList } = usePermissionStore()
   const navigate = useNavigate()
   const [selectedKeys, setSelectedKeys] = useState<string[]>([])
   const [openKeys, setOpenKeys] = useState<string[]>([])
   const location = useLocation()
   const { pathname } = location
+  const menuList = useMemo(() => {
+    return transformToMenu(backMenuList)
+  }, [backMenuList])
 
   const items = [
     {
@@ -176,7 +200,7 @@ const SiderMenu: React.FC = () => {
     <Menu
       theme={isDarkMode ? 'light' : 'dark'}
       mode="inline"
-      items={items}
+      items={menuList}
       selectedKeys={selectedKeys}
       openKeys={openKeys}
       onSelect={handleClick}

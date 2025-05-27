@@ -78,14 +78,14 @@ const menuList = [
     ]
   },
   {
-    name: '关于',
+    name: 'Me',
     path: 'about',
     icon: 'simple-icons:aboutdotme',
     component: 'Layout',
     children: [
       {
         name: '关于',
-        path: 'about',
+        path: 'index',
         icon: null,
         component: '/about/index'
       }
