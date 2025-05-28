@@ -1,10 +1,11 @@
-import { InfoCircleOutlined, DashboardOutlined, MenuOutlined, ExceptionOutlined } from '@ant-design/icons'
+// import { InfoCircleOutlined, DashboardOutlined, MenuOutlined, ExceptionOutlined } from '@ant-design/icons'
 import { Menu } from 'antd'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useAppStore } from '@/store/app'
 import { usePermissionStore } from '@/store/permission'
 import { cloneDeep } from 'lodash-es'
+import * as Icons from '@ant-design/icons'
 
 interface MenuItem {
   key: string
@@ -18,11 +19,11 @@ function transformToMenu(routeList: any) {
   routeList = cloneDeep(routeList)
   function joinPath(routeList: any[], parentPath: string = '') {
     routeList.forEach((route: any) => {
-      const { path, name, children } = route
-
-      route.key = parentPath + (path.startsWith('/') ? path : `/${path}`)
+      const { path, name, children, icon } = route
+      const key = path ? (path.startsWith('/') ? path : `/${path}`) : ''
+      route.key = parentPath + key
       route.label = name
-      route.icon = null
+      route.icon = createIcon(icon)
       if (children && children.length) {
         joinPath(children, route.key || '')
       }
@@ -31,6 +32,16 @@ function transformToMenu(routeList: any) {
   joinPath(routeList)
   return routeList
 }
+
+function createIcon(name: string) {
+  if (!name) return null
+  const cutomIcons: { [key: string]: any } = Icons
+  const icon = cutomIcons[name]
+  if (!icon) return null
+  return React.createElement(icon)
+}
+createIcon('ion:settings-outline')
+
 const SiderMenu: React.FC = () => {
   const { isDarkMode } = useAppStore()
   const { backMenuList } = usePermissionStore()
@@ -43,96 +54,96 @@ const SiderMenu: React.FC = () => {
     return transformToMenu(backMenuList)
   }, [backMenuList])
 
-  const items = [
-    {
-      key: '/dashboard',
-      icon: <DashboardOutlined />,
-      label: 'Dashboard',
-      children: [
-        {
-          key: '/dashboard/analysis',
-          label: '分析页'
-        },
-        {
-          key: '/dashboard/workbench',
-          label: '工作台'
-        }
-      ]
-    },
-    {
-      key: '/menu',
-      label: 'Menu',
-      icon: <MenuOutlined />,
-      children: [
-        {
-          key: '/menu/menu1',
-          label: 'Menu1',
-          children: [
-            {
-              key: '/menu/menu1/menu1-1',
-              label: 'Menu1-1'
-            },
-            {
-              key: '/menu/menu1/menu1-2',
-              label: 'Menu1-2'
-            }
-          ]
-        },
-        {
-          key: '/menu/menu2',
-          label: 'Menu2',
-          children: [
-            {
-              key: '/menu/menu2/menu2-1',
-              label: 'Menu2-1'
-            },
-            {
-              key: '/menu/menu2/menu2-2',
-              label: 'Menu2-2',
-              children: [
-                {
-                  key: '/menu/menu2/menu2-2/menu2-2-1',
-                  label: 'Menu2-2-1'
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      key: '/exception',
-      icon: <ExceptionOutlined />,
-      label: '异常页',
-      children: [
-        {
-          key: '/exception/403',
-          label: '403'
-        },
-        {
-          key: '/exception/404',
-          label: '404'
-        },
-        {
-          key: '/exception/500',
-          label: '500'
-        },
-        {
-          key: '/exception/net-work-error',
-          label: '网络错误'
-        },
-        {
-          key: '/exception/no-data',
-          label: '无数据'
-        }
-      ]
-    },
-    {
-      key: '/about',
-      icon: <InfoCircleOutlined />,
-      label: '关于'
-    }
-  ]
+  // const items = [
+  //   {
+  //     key: '/dashboard',
+  //     icon: <DashboardOutlined />,
+  //     label: 'Dashboard',
+  //     children: [
+  //       {
+  //         key: '/dashboard/analysis',
+  //         label: '分析页'
+  //       },
+  //       {
+  //         key: '/dashboard/workbench',
+  //         label: '工作台'
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     key: '/menu',
+  //     label: 'Menu',
+  //     icon: <MenuOutlined />,
+  //     children: [
+  //       {
+  //         key: '/menu/menu1',
+  //         label: 'Menu1',
+  //         children: [
+  //           {
+  //             key: '/menu/menu1/menu1-1',
+  //             label: 'Menu1-1'
+  //           },
+  //           {
+  //             key: '/menu/menu1/menu1-2',
+  //             label: 'Menu1-2'
+  //           }
+  //         ]
+  //       },
+  //       {
+  //         key: '/menu/menu2',
+  //         label: 'Menu2',
+  //         children: [
+  //           {
+  //             key: '/menu/menu2/menu2-1',
+  //             label: 'Menu2-1'
+  //           },
+  //           {
+  //             key: '/menu/menu2/menu2-2',
+  //             label: 'Menu2-2',
+  //             children: [
+  //               {
+  //                 key: '/menu/menu2/menu2-2/menu2-2-1',
+  //                 label: 'Menu2-2-1'
+  //               }
+  //             ]
+  //           }
+  //         ]
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     key: '/exception',
+  //     icon: <ExceptionOutlined />,
+  //     label: '异常页',
+  //     children: [
+  //       {
+  //         key: '/exception/403',
+  //         label: '403'
+  //       },
+  //       {
+  //         key: '/exception/404',
+  //         label: '404'
+  //       },
+  //       {
+  //         key: '/exception/500',
+  //         label: '500'
+  //       },
+  //       {
+  //         key: '/exception/net-work-error',
+  //         label: '网络错误'
+  //       },
+  //       {
+  //         key: '/exception/no-data',
+  //         label: '无数据'
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     key: '/about',
+  //     icon: <InfoCircleOutlined />,
+  //     label: '关于'
+  //   }
+  // ]
 
   const findParentKeys = (nodes: MenuItem[], target: string) => {
     const parentKeys = new Set<any>()
@@ -163,7 +174,7 @@ const SiderMenu: React.FC = () => {
   // 监听路由变化，设置选中的 keys 和 展开的 keys
   useEffect(() => {
     setSelectedKeys([pathname])
-    const parentKeys = findParentKeys(items, pathname)
+    const parentKeys = findParentKeys(menuList, pathname)
     setOpenKeys(parentKeys)
   }, [pathname])
 
@@ -174,7 +185,7 @@ const SiderMenu: React.FC = () => {
   const handleOpenChange = (keys: string[]) => {
     // 获取一级菜单的 keys
     const rootMenuKeys = []
-    for (const item of items) {
+    for (const item of menuList) {
       if (item.children && item.children.length > 0) {
         rootMenuKeys.push(item.key)
       }
@@ -190,7 +201,7 @@ const SiderMenu: React.FC = () => {
         setOpenKeys([lastOpenKey])
       } else {
         // 否则展开父级菜单
-        const parentKeys = findParentKeys(items, lastOpenKey)
+        const parentKeys = findParentKeys(menuList, lastOpenKey)
         setOpenKeys([...parentKeys, lastOpenKey])
       }
     }

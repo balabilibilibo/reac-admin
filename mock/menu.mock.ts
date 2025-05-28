@@ -4,7 +4,7 @@ const menuList = [
   {
     name: 'Dashboard',
     path: 'dashboard',
-    icon: 'ion:settings-outline',
+    icon: 'DashboardOutlined',
     component: 'Layout',
     children: [
       {
@@ -24,7 +24,7 @@ const menuList = [
   {
     name: 'Menu',
     path: 'menu',
-    icon: 'ion:settings-outline',
+    icon: 'MenuOutlined',
     component: 'Layout',
     children: [
       {
@@ -80,7 +80,7 @@ const menuList = [
   {
     name: 'Me',
     path: 'about',
-    icon: 'simple-icons:aboutdotme',
+    icon: 'InfoCircleOutlined',
     component: 'Layout',
     children: [
       {
