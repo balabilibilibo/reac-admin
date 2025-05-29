@@ -18,7 +18,6 @@ const App = () => {
     document.documentElement.classList.toggle('dark', theme === 'dark')
     updateDarkMode(theme === 'dark')
   }, [])
-
   return (
     <ConfigProvider
       theme={{

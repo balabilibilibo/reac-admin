@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useAppStore } from '@/store/app'
 import { usePermissionStore } from '@/store/permission'
 import { cloneDeep } from 'lodash-es'
-import * as Icons from '@ant-design/icons'
+import { Icon } from '@iconify/react'
 
 interface MenuItem {
   key: string
@@ -23,7 +23,7 @@ function transformToMenu(routeList: any) {
       const key = path ? (path.startsWith('/') ? path : `/${path}`) : ''
       route.key = parentPath + key
       route.label = name
-      route.icon = createIcon(icon)
+      route.icon = renderIcon(icon)
       if (children && children.length) {
         joinPath(children, route.key || '')
       }
@@ -33,14 +33,19 @@ function transformToMenu(routeList: any) {
   return routeList
 }
 
-function createIcon(name: string) {
+/* function createIcon(name: string) {
   if (!name) return null
   const cutomIcons: { [key: string]: any } = Icons
   const icon = cutomIcons[name]
   if (!icon) return null
   return React.createElement(icon)
 }
-createIcon('ion:settings-outline')
+ */
+
+function renderIcon(name: string) {
+  if (!name) return null
+  return React.createElement(Icon, { icon: name })
+}
 
 const SiderMenu: React.FC = () => {
   const { isDarkMode } = useAppStore()

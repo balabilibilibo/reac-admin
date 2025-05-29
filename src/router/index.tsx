@@ -26,7 +26,7 @@ export const Router = () => {
   const routeList = useMemo(() => {
     const menuList = cloneDeep(backMenuList)
     const routes = transformToRoute(menuList)
-    console.log('routes', routes)
+    console.log('routes')
     return handleRedirect(routes)
   }, [backMenuList])
 

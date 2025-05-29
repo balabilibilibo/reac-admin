@@ -2,9 +2,9 @@ import { defineFakeRoute } from 'vite-plugin-fake-server'
 
 const menuList = [
   {
-    name: 'Dashboard',
+    name: '概览',
     path: 'dashboard',
-    icon: 'DashboardOutlined',
+    icon: 'ion:grid-outline',
     component: 'Layout',
     children: [
       {
@@ -22,9 +22,9 @@ const menuList = [
     ]
   },
   {
-    name: 'Menu',
+    name: '菜单',
     path: 'menu',
-    icon: 'MenuOutlined',
+    icon: 'ant-design:menu-outlined',
     component: 'Layout',
     children: [
       {
@@ -78,9 +78,9 @@ const menuList = [
     ]
   },
   {
-    name: 'Me',
+    name: '关于',
     path: 'about',
-    icon: 'InfoCircleOutlined',
+    icon: 'cib:about-me',
     component: 'Layout',
     children: [
       {
