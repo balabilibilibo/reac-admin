@@ -21,6 +21,8 @@ interface AppRouteModule extends RouteObject {
   name?: string
   // 路由
   path?: string
+  // 图标
+  icon?: string
   // 组件路径
   component?: string
   // 组件

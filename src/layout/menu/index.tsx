@@ -4,8 +4,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useAppStore } from '@/store/app'
 import { usePermissionStore } from '@/store/permission'
-import { cloneDeep } from 'lodash-es'
-import { Icon } from '@iconify/react'
+import { transformToMenu } from '@/utils/menu'
 
 interface MenuItem {
   key: string
@@ -15,36 +14,11 @@ interface MenuItem {
   parentKeys?: string[]
 }
 
-function transformToMenu(routeList: any) {
-  routeList = cloneDeep(routeList)
-  function joinPath(routeList: any[], parentPath: string = '') {
-    routeList.forEach((route: any) => {
-      const { path, name, children, icon } = route
-      const key = path ? (path.startsWith('/') ? path : `/${path}`) : ''
-      route.key = parentPath + key
-      route.label = name
-      route.icon = renderIcon(icon)
-      if (children && children.length) {
-        joinPath(children, route.key || '')
-      }
-    })
-  }
-  joinPath(routeList)
-  return routeList
-}
-
-/* function createIcon(name: string) {
-  if (!name) return null
-  const cutomIcons: { [key: string]: any } = Icons
-  const icon = cutomIcons[name]
-  if (!icon) return null
-  return React.createElement(icon)
-}
- */
-
-function renderIcon(name: string) {
-  if (!name) return null
-  return React.createElement(Icon, { icon: name })
+interface Menu {
+  name: string
+  icon: string
+  path: string
+  children?: Menu[]
 }
 
 const SiderMenu: React.FC = () => {
@@ -58,97 +32,6 @@ const SiderMenu: React.FC = () => {
   const menuList = useMemo(() => {
     return transformToMenu(backMenuList)
   }, [backMenuList])
-
-  // const items = [
-  //   {
-  //     key: '/dashboard',
-  //     icon: <DashboardOutlined />,
-  //     label: 'Dashboard',
-  //     children: [
-  //       {
-  //         key: '/dashboard/analysis',
-  //         label: '分析页'
-  //       },
-  //       {
-  //         key: '/dashboard/workbench',
-  //         label: '工作台'
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     key: '/menu',
-  //     label: 'Menu',
-  //     icon: <MenuOutlined />,
-  //     children: [
-  //       {
-  //         key: '/menu/menu1',
-  //         label: 'Menu1',
-  //         children: [
-  //           {
-  //             key: '/menu/menu1/menu1-1',
-  //             label: 'Menu1-1'
-  //           },
-  //           {
-  //             key: '/menu/menu1/menu1-2',
-  //             label: 'Menu1-2'
-  //           }
-  //         ]
-  //       },
-  //       {
-  //         key: '/menu/menu2',
-  //         label: 'Menu2',
-  //         children: [
-  //           {
-  //             key: '/menu/menu2/menu2-1',
-  //             label: 'Menu2-1'
-  //           },
-  //           {
-  //             key: '/menu/menu2/menu2-2',
-  //             label: 'Menu2-2',
-  //             children: [
-  //               {
-  //                 key: '/menu/menu2/menu2-2/menu2-2-1',
-  //                 label: 'Menu2-2-1'
-  //               }
-  //             ]
-  //           }
-  //         ]
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     key: '/exception',
-  //     icon: <ExceptionOutlined />,
-  //     label: '异常页',
-  //     children: [
-  //       {
-  //         key: '/exception/403',
-  //         label: '403'
-  //       },
-  //       {
-  //         key: '/exception/404',
-  //         label: '404'
-  //       },
-  //       {
-  //         key: '/exception/500',
-  //         label: '500'
-  //       },
-  //       {
-  //         key: '/exception/net-work-error',
-  //         label: '网络错误'
-  //       },
-  //       {
-  //         key: '/exception/no-data',
-  //         label: '无数据'
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     key: '/about',
-  //     icon: <InfoCircleOutlined />,
-  //     label: '关于'
-  //   }
-  // ]
 
   const findParentKeys = (nodes: MenuItem[], target: string) => {
     const parentKeys = new Set<any>()

@@ -3,7 +3,7 @@ import { basicRoutes } from './routes'
 import { usePermissionStore } from '@/store/permission'
 import { Layout, ErrorBoundary } from '@/router/constant'
 import { PageEnum } from '@/enums/pageEnum'
-import { transformToRoute } from '@/router/utils'
+import { transformToRoute } from '@/utils/route/index'
 import { cloneDeep } from 'lodash-es'
 import { useMemo } from 'react'
 
