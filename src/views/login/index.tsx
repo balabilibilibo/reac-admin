@@ -1,6 +1,6 @@
 import type { FormProps } from 'antd'
 import { Button, Checkbox, Form, Input, notification } from 'antd'
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import loginBg from '../../assets/login.svg'
 import ThemeSwitch from './components/ThemeSwitch'
@@ -20,22 +20,43 @@ const Login: React.FC = () => {
   const navigate = useNavigate()
   const { setToken, setUserInfo } = useUserStore()
   const { setBackMenuList } = usePermissionStore()
-  const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
-    console.log('Success:', values)
-    const { username, password } = values
-    const {
-      data: { token }
-    } = await loginApi({ username, password })
-    setToken(token)
-    const { data: res } = await getUserInfo()
-    setUserInfo(res)
+  const [loading, setLoading] = useState(false)
+
+  const login = async (parmas: { username: string; password: string }) => {
+    try {
+      const { username, password } = parmas
+      const { data } = await loginApi({ username, password })
+      const { token } = data
+      setToken(token)
+      return afterLogin()
+    } catch (error) {
+      return Promise.reject(error)
+    }
+  }
+
+  const afterLogin = async () => {
+    const { data: userInfo } = await getUserInfo()
+    setUserInfo(userInfo)
     const { data: menuList } = await getMenuList()
     setBackMenuList(menuList)
-    await navigate(PageEnum.BASE_HOME)
-    notification.success({
-      message: '登录成功',
-      description: `欢迎回来：${username}`
-    })
+    await navigate(PageEnum.BASE_HOME, { replace: true })
+    return userInfo
+  }
+
+  const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
+    console.log('Success:', values)
+    try {
+      setLoading(true)
+      const userInfo = await login(values)
+      if (userInfo) {
+        notification.success({
+          message: '登录成功',
+          description: `欢迎回来：${userInfo.name}`
+        })
+      }
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -76,7 +97,7 @@ const Login: React.FC = () => {
             </Form.Item>
 
             <Form.Item label={null}>
-              <Button block type="primary" htmlType="submit" size="large">
+              <Button block type="primary" htmlType="submit" size="large" loading={loading}>
                 登录
               </Button>
             </Form.Item>
