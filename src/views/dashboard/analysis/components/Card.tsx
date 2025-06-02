@@ -1,4 +1,4 @@
-import { Icon } from '@iconify/react'
+import { SvgIcon } from '@/components/Icon/SvgIcon'
 
 interface Props {
   title: string
@@ -11,9 +11,9 @@ export function Card(props: Props) {
   return (
     <div className="rounded-lg border border-[#e4e4e7] bg-white p-4 dark:border-[#36363a] dark:bg-[#141414]">
       <div className="text-xl font-bold">{title}</div>
-      <div className="my-4 flex justify-between">
+      <div className="my-4 flex items-center justify-between">
         <span className="text-lg">{value}</span>
-        <Icon icon={icon} className="text-3xl" />
+        <SvgIcon icon={icon} size={40} />
       </div>
       <div className="flex justify-between">
         <span>总{title}</span>
