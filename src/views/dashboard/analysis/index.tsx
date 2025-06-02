@@ -1,8 +1,8 @@
-import GridView from './GridView'
+import GridCard from './GridCard'
 const Analysis: React.FC = () => {
   return (
     <div>
-      <GridView />
+      <GridCard />
     </div>
   )
 }
