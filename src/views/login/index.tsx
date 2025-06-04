@@ -77,7 +77,7 @@ const Login: React.FC = () => {
             name="login"
             layout="vertical"
             initialValues={{
-              username: 'admin',
+              username: '吧啦哔哩啵',
               password: '123456',
               remember: true
             }}

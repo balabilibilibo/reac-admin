@@ -6,7 +6,7 @@ export default defineFakeRoute([
     method: 'get',
     response: (req) => {
       const query = req.query
-      if (query.username === 'admin' && query.password === '123456') {
+      if (query.username === '吧啦哔哩啵' && query.password === '123456') {
         return {
           code: 200,
           data: {
@@ -30,7 +30,7 @@ export default defineFakeRoute([
       return {
         code: 200,
         data: {
-          name: 'admin',
+          name: '吧啦哔哩啵',
           age: 18,
           avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif'
         },
