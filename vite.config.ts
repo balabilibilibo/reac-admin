@@ -4,6 +4,7 @@ import { readPackageJSON } from 'pkg-types'
 import UnoCSS from 'unocss/vite'
 import { ConfigEnv, defineConfig } from 'vite'
 import { vitePluginFakeServer } from 'vite-plugin-fake-server'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 const pathResolve = (pathName: string) => {
   return path.resolve(process.cwd(), '.', pathName)
@@ -26,6 +27,10 @@ export default defineConfig(async ({ command }: ConfigEnv) => {
         enableProd: true,
         // 是否在控制台显示请求日志
         logger: true
+      }),
+      createSvgIconsPlugin({
+        iconDirs: [pathResolve('src/assets/icons')],
+        symbolId: 'icon-[name]'
       })
     ],
     server: {

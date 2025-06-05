@@ -1,7 +1,7 @@
 import { useAppStore } from '@/store/app'
-import { MoonOutlined, SunOutlined } from '@ant-design/icons'
 import { useTheme } from 'ahooks'
 import { APP_THEME_KEY } from '@/enums/cacheEnum'
+import { SvgIcon } from '@/components/Icon/SvgIcon'
 
 const ThemeSwitch = () => {
   const { isDarkMode, updateDarkMode } = useAppStore()
@@ -24,8 +24,8 @@ const ThemeSwitch = () => {
         <div
           className={`transition-property-all transition-duration-500 transition-delay-100 absolute h-[18px] w-[18px] rounded-full bg-white will-change-transform ${isDarkMode ? 'translate-x-[calc(100%+2px)]' : null}`}
         ></div>
-        <MoonOutlined className="text-white" />
-        <SunOutlined className="text-white" />
+        <SvgIcon icon="moon" size={14} />
+        <SvgIcon icon="sun" size={14} />
       </div>
     </div>
   )

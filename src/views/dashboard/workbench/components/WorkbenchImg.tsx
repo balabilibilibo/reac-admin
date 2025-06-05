@@ -1,5 +1,5 @@
 import { Card } from 'antd'
-import imgSrc from '@/assets/illustration.svg'
+import imgSrc from '@/assets/svg/illustration.svg'
 
 export default function WorkbenchImg() {
   return (
