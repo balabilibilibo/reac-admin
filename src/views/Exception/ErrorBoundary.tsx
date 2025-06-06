@@ -1,6 +1,6 @@
 import { Button } from 'antd'
 import { useNavigate, useRouteError } from 'react-router-dom'
-import errorSrc from '@/assets/error.svg'
+import errorSrc from '@/assets/svg/error.svg'
 
 const ErrorBoundary = () => {
   const error = useRouteError()
