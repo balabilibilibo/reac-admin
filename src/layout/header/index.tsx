@@ -4,6 +4,7 @@ import { useAppStore } from '@/store/app'
 import UserDropDown from './components/UserDropDown'
 import FullScreen from './components/FullScreen'
 import ThemeSwitch from './components/ThemeSwitch'
+import Breadcrumb from './components/Breadcrumb'
 
 const Header: React.FC = () => {
   const { collapsed, setCollapsed } = useAppStore()
@@ -16,7 +17,7 @@ const Header: React.FC = () => {
       className="flex items-center justify-between"
       style={{ padding: 0, backgroundColor: colorBgContainer }}
     >
-      <div>
+      <div className="flex items-center">
         <Button
           type="text"
           icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -29,6 +30,7 @@ const Header: React.FC = () => {
             height: 32
           }}
         />
+        <Breadcrumb />
       </div>
       <div className="mx-2.5 flex items-center">
         <ThemeSwitch />
