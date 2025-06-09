@@ -3,10 +3,11 @@ import { cloneDeep } from 'lodash-es'
 import { Icon } from '@iconify/react'
 import { AppRouteModule } from '@/types/router'
 
-interface Menu {
+export interface Menu {
   name: string
   icon: string
   path: string
+  key: string
   children?: Menu[]
 }
 
@@ -52,4 +53,29 @@ export function transformToMenu(routeList: AppRouteModule[]) {
 export function renderIcon(name: string) {
   if (!name) return null
   return React.createElement(Icon, { icon: name })
+}
+
+// 查找父级
+export function findParent(menuList: Menu[], targetPath: string, callback?: (item: any) => void): Menu[] {
+  const list = [...menuList]
+  const result: Menu[] = []
+  function traversal(list: any[], res: any[] = []) {
+    for (const item of list) {
+      callback && callback(item)
+      res.push(item)
+      if (item.path === targetPath) {
+        result.push(...res)
+        return true
+      }
+      if (item.children && item.children.length) {
+        const foundChildren = traversal(item.children, res)
+        if (foundChildren) return true
+      }
+      res.pop()
+    }
+    return false
+  }
+
+  traversal(list)
+  return result
 }

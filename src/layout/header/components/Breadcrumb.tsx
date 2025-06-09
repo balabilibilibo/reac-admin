@@ -1,44 +1,39 @@
 import { Breadcrumb as AntdBreadcrumb } from 'antd'
 import { useLocation } from 'react-router-dom'
 import { usePermissionStore } from '@/store/permission'
-import { transformToMenu } from '@/utils/menu'
+import { transformToMenu, findParent, Menu } from '@/utils/menu'
+import { Link } from 'react-router-dom'
+import { useMemo } from 'react'
+function getBreadcrumbItems(menuList: Menu[]) {
+  function traversal(list: Menu[]): any[] {
+    return list.map((item) => {
+      const hasChildren = item.children && item.children?.length > 0
 
-function findParentPath(menuList: any[], path: string): string[] {
-  const parentPaths: string[] = []
-  function traverseMenu(list: any[], targetPath: string) {
-    for (const item of list) {
-      if (item.path === targetPath) {
-        parentPaths.push(item)
-        return
+      return {
+        title: item.name,
+        key: item.path,
+        ...(hasChildren && {
+          menu: {
+            items: item.children?.map((child) => ({
+              key: child.path,
+              label: <Link to={child.path}>{child.name}</Link>
+            }))
+          }
+        })
       }
-      const { children } = item
-
-      if (children && children.length > 0) {
-        const foundChild = children.find((child) => child.path === targetPath)
-        if (foundChild) {
-          parentPaths.push(item)
-        }
-        // 递归检查子级是否匹配
-        traverseMenu(children, targetPath)
-      }
-    }
+    })
   }
 
-  traverseMenu(menuList, path)
-  return parentPaths
+  return traversal(menuList)
 }
 export default function Breadcrumb() {
   const { backMenuList } = usePermissionStore()
   const location = useLocation()
   const { pathname } = location
-  const menuList = transformToMenu(backMenuList)
-  const parentPath = findParentPath(menuList, pathname)
-  const items = [...parentPath]
-  return (
-    <AntdBreadcrumb
-      items={items.map((item) => ({
-        title: item.name
-      }))}
-    />
-  )
+  const breadcrumbItems: any[] = useMemo(() => {
+    const menuList = transformToMenu(backMenuList)
+    const parent = findParent(menuList, pathname)
+    return getBreadcrumbItems(parent)
+  }, [backMenuList, pathname])
+  return <AntdBreadcrumb items={breadcrumbItems} />
 }
