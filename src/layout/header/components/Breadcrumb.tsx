@@ -35,5 +35,9 @@ export default function Breadcrumb() {
     const parent = findParent(menuList, pathname)
     return getBreadcrumbItems(parent)
   }, [backMenuList, pathname])
-  return <AntdBreadcrumb items={breadcrumbItems} />
+  return (
+    <div className="mx-2.5">
+      <AntdBreadcrumb items={breadcrumbItems} />
+    </div>
+  )
 }
