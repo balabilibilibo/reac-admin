@@ -49,6 +49,7 @@ export default function MultiTabs(props: Props) {
 
   useEffect(() => {
     const node = findNode(menuList, pathname)
+    if (!node) return
     setTabs((prev) => {
       const isExisted = prev.filter((item) => item.path == node?.path)
       if (!isExisted.length) {
