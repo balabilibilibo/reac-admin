@@ -15,7 +15,7 @@ const pathResolve = (pathName: string) => {
 // https://vite.dev/config/
 export default defineConfig(async ({ mode }: ConfigEnv): Promise<UserConfig> => {
   const env = loadEnv(mode, root)
-  const { VITE_APP_TITLE, VITE_USE_MOCK } = env
+  const { VITE_APP_TITLE, VITE_USE_MOCK, VITE_PORT } = env
   return {
     plugins: [
       react(),
@@ -45,7 +45,8 @@ export default defineConfig(async ({ mode }: ConfigEnv): Promise<UserConfig> => 
     ],
     server: {
       host: true,
-      open: true
+      open: true,
+      port: +VITE_PORT
     },
     resolve: {
       alias: [{ find: '@/', replacement: pathResolve('src') + '/' }]
