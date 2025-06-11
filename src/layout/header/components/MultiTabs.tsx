@@ -53,7 +53,7 @@ export default function MultiTabs(props: Props) {
     setTabs((prev) => {
       const isExisted = prev.filter((item) => item.path == node?.path)
       if (!isExisted.length) {
-        return [...prev, node]
+        return [...prev, node].filter((item) => !item?.children?.length)
       }
       return prev.filter((item) => !item?.children?.length)
     })
@@ -92,6 +92,7 @@ export default function MultiTabs(props: Props) {
         tabBarGutter={3}
         hideAdd
         style={{ marginBottom: 0 }}
+        tabBarStyle={{ marginBottom: 0 }}
         defaultActiveKey="1"
         activeKey={activeTab}
         items={items}

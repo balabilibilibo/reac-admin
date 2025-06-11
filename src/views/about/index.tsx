@@ -1,4 +1,5 @@
 import { Descriptions, DescriptionsProps, Tag, Button } from 'antd'
+import TypeIt from 'typeit-react'
 const { pkg } = __APP_INFO__
 const { version, author } = pkg
 const devSchema: DescriptionsProps['items'] = []
@@ -51,10 +52,24 @@ const About: React.FC = () => {
     <div className="flex flex-col gap-2.5">
       <div className="rounded bg-white p-2.5 dark:bg-[#141414]">
         <div className="text-base font-bold">关于</div>
-        <div>
-          这是一个使用Vite、Antd、React Router、Zustand、TypeScript、UnoCSS、Ahooks 搭建的简易后台管理系统，用来学习
-          React 相关知识...
-        </div>
+        <TypeIt
+          options={{
+            speed: 50,
+            waitUntilVisible: true,
+            afterComplete: () => {
+              const el = document.querySelector<HTMLElement>('.ti-cursor')
+              if (el) {
+                el.style.display = 'none'
+              }
+            }
+          }}
+          getBeforeInit={(instance) => {
+            instance.type(
+              '这是一个使用Vite、Antd、React Router、Zustand、TypeScript、UnoCSS、Ahooks 搭建的简易后台管理系统，用来学习React 相关知识...'
+            )
+            return instance
+          }}
+        />
       </div>
       <div className="rounded bg-white p-2.5 dark:bg-[#141414]">
         <Descriptions title="项目信息" bordered items={infoSchema} column={2} size="small" />

@@ -32,9 +32,6 @@ const App = () => {
           Form: {},
           Descriptions: {
             titleMarginBottom: 10
-          },
-          Tabs: {
-            horizontalMargin: '0'
           }
         }
       }}
