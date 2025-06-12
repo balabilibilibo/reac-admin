@@ -82,6 +82,7 @@ const menuList = [
     path: 'about',
     icon: 'cib:about-me',
     component: 'Layout',
+    hideChildrenInMenu: true,
     children: [
       {
         name: '关于',

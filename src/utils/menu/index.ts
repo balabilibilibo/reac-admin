@@ -41,6 +41,10 @@ export function transformToMenu(routeList: AppRouteModule[]) {
   const cloneRouteList: any[] = cloneDeep(routeList)
   joinParentPath(cloneRouteList)
   const menuList = traverseTree(cloneRouteList, (item) => {
+    if (item.hideChildrenInMenu && item.children && item.children.length) {
+      item.path = item.children[0].path
+      delete item.children
+    }
     const { name, path, icon } = item
     item.key = path
     item.label = name
