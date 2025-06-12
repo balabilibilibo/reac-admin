@@ -21,7 +21,7 @@ const Content: React.FC = () => {
       }}
     >
       <TransitionGroup>
-        <CSSTransition nodeRef={nodeRef} key={location.pathname} timeout={300} classNames="alert">
+        <CSSTransition nodeRef={nodeRef} key={location.pathname} timeout={300} classNames="fade">
           <div ref={nodeRef} className="h-full">
             <Suspense fallback={<div>Loading...</div>}>
               <ProgressBar />
