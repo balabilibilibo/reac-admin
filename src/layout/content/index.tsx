@@ -20,7 +20,7 @@ const Content: React.FC = () => {
         borderRadius: borderRadiusLG
       }}
     >
-      <TransitionGroup className="h-full">
+      <TransitionGroup className="h-full overflow-x-hidden">
         <CSSTransition nodeRef={nodeRef} key={location.pathname} timeout={300} classNames="fade">
           <div ref={nodeRef} className="h-full">
             <Suspense fallback={<div>Loading...</div>}>
