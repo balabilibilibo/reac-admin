@@ -78,6 +78,39 @@ const menuList = [
     ]
   },
   {
+    name: '异常页',
+    path: 'exception',
+    icon: 'ant-design:exception-outlined',
+    component: 'Layout',
+    children: [
+      {
+        name: '403',
+        path: '403',
+        icon: null
+      },
+      {
+        name: '404',
+        path: '404',
+        icon: null
+      },
+      {
+        name: '500',
+        path: '500',
+        icon: null
+      },
+      {
+        name: '网络错误',
+        path: 'net-work-error',
+        icon: null
+      },
+      {
+        name: '无数据',
+        path: 'no-data',
+        icon: null
+      }
+    ]
+  },
+  {
     name: '关于',
     path: 'about',
     icon: 'cib:about-me',
