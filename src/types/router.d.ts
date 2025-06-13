@@ -34,4 +34,6 @@ interface AppRouteModule extends RouteObject {
   index?: boolean
   // 子路由
   children?: AppRouteModule[]
+  // 链接
+  frameSrc?: URL
 }

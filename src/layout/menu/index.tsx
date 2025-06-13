@@ -1,10 +1,11 @@
 // import { InfoCircleOutlined, DashboardOutlined, MenuOutlined, ExceptionOutlined } from '@ant-design/icons'
-import { Menu } from 'antd'
+import { Menu, MenuProps } from 'antd'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useAppStore } from '@/store/app'
 import { usePermissionStore } from '@/store/permission'
 import { transformToMenu } from '@/utils/menu'
+import { isHttpUrl } from '@/utils/is'
 
 interface MenuItem {
   key: string
@@ -66,7 +67,10 @@ const SiderMenu: React.FC = () => {
     setOpenKeys(parentKeys)
   }, [pathname])
 
-  const handleClick = ({ key }: { key: string }) => {
+  const handleClick: MenuProps['onClick'] = ({ key }) => {
+    if (isHttpUrl(key)) {
+      return window.open(key)
+    }
     navigate(key.startsWith('/') ? key : `/${key}`)
   }
 

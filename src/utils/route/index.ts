@@ -2,6 +2,7 @@ import { Layout } from '@/router/constant'
 import { AppRouteModule } from '@/types/router'
 import { cloneDeep } from 'lodash-es'
 import { lazy } from 'react'
+import IFrame from '@/layout/iframe'
 
 const layoutMap = new Map<string, any>()
 layoutMap.set('LAYOUT', Layout)
@@ -47,6 +48,9 @@ export function dynamicRoute(routeList: AppRouteModule[]) {
   if (!routeList.length) return []
   routeList.forEach((route) => {
     const { component, children } = route
+    if (!component && route.frameSrc) {
+      route.Component = IFrame
+    }
     if (component) {
       const layoutFound = layoutMap.get(component.toUpperCase())
       if (layoutFound) {

@@ -2,6 +2,7 @@ import React from 'react'
 import { cloneDeep } from 'lodash-es'
 import { Icon } from '@iconify/react'
 import { AppRouteModule } from '@/types/router'
+import { isHttpUrl } from '../is'
 
 export interface Menu {
   name: string
@@ -15,7 +16,10 @@ export interface Menu {
 export function joinParentPath(menuList: Menu[], parentPath: string = '') {
   menuList.forEach((menu) => {
     const { path, children } = menu
-    menu.path = path.startsWith('/') ? path : `${parentPath}/${path}`
+    if (!path.startsWith('/') && !isHttpUrl(path)) {
+      menu.path = `${parentPath}/${path}`
+    }
+    // menu.path = path.startsWith('/') ? path : `${parentPath}/${path}`
     children?.length && joinParentPath(children, menu.path)
   })
 }

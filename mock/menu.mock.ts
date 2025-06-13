@@ -111,6 +111,43 @@ const menuList = [
     ]
   },
   {
+    name: '文档',
+    path: 'doc',
+    icon: 'ant-design:file-text-outlined',
+    component: 'Layout',
+    children: [
+      {
+        name: '项目地址(外链)',
+        path: 'https://gitee.com/balabilibo/nest-server/tree/react-admin/',
+        icon: 'simple-icons:gitee'
+      },
+      {
+        name: 'React',
+        path: 'react',
+        icon: 'logos:react',
+        frameSrc: 'https://react.dev/'
+      },
+      {
+        name: 'Vite',
+        path: 'vite',
+        icon: 'vscode-icons:file-type-vite',
+        frameSrc: 'https://vitejs.cn/'
+      },
+      {
+        name: 'Antd Design',
+        path: 'antd',
+        icon: 'devicon:antdesign',
+        frameSrc: 'https://ant.design/index-cn/'
+      },
+      {
+        name: 'UnoCSS',
+        path: 'unocss',
+        icon: 'material-icon-theme:unocss',
+        frameSrc: 'https://unocss.dev/'
+      }
+    ]
+  },
+  {
     name: '关于',
     path: 'about',
     icon: 'cib:about-me',
