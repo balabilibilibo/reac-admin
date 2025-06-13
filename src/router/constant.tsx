@@ -1,6 +1,6 @@
 import { lazy } from 'react'
 import AuthGuard from '@/router/guard/AuthGuard'
-import LayoutCon from '@/layout'
+import LayoutCon from '@/layouts/default'
 
 export const ErrorBoundary = lazy(() => import('@/views/exception/ErrorBoundary'))
 

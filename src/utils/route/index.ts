@@ -2,7 +2,7 @@ import { Layout } from '@/router/constant'
 import { AppRouteModule } from '@/types/router'
 import { cloneDeep } from 'lodash-es'
 import { lazy } from 'react'
-import IFrame from '@/layout/iframe'
+import IFrame from '@/layouts/iframe'
 
 const layoutMap = new Map<string, any>()
 layoutMap.set('LAYOUT', Layout)
