@@ -111,6 +111,26 @@ const menuList = [
     ]
   },
   {
+    name: '地图',
+    path: 'map',
+    icon: 'ant-design:global-outlined',
+    component: 'Layout',
+    children: [
+      {
+        name: '百度地图',
+        path: 'baidu',
+        icon: null,
+        component: '/map/baidu/index'
+      },
+      {
+        name: '高德地图',
+        path: 'amap',
+        icon: null,
+        component: '/map/amap/index'
+      }
+    ]
+  },
+  {
     name: '文档',
     path: 'doc',
     icon: 'ant-design:file-text-outlined',
