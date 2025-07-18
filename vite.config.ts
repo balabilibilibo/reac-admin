@@ -17,7 +17,7 @@ export default defineConfig(async ({ mode }: ConfigEnv): Promise<UserConfig> => 
   const env = loadEnv(mode, root)
   const { VITE_APP_TITLE, VITE_USE_MOCK, VITE_PORT } = env
   return {
-    base: '/reac-admin/',
+    base: '/react-admin/',
     plugins: [
       react(),
       UnoCSS(),
