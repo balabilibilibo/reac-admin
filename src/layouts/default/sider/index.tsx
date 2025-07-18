@@ -15,7 +15,7 @@ const Sider: React.FC = () => {
       theme={isDarkMode ? 'light' : 'dark'}
     >
       <div className={`h-12 cursor-pointer ${collapsed ? 'flex-center' : 'flex items-center pl-2.5'}`}>
-        <img src="/icon.svg" alt="logo" className="h-8 w-8" />
+        <img src="./icon.svg" alt="logo" className="h-8 w-8" />
         {!collapsed && <div className="ml-2 flex-shrink-0 truncate text-base font-bold text-white">{title}</div>}
       </div>
       <SiderMenu />
