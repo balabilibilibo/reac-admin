@@ -17,5 +17,6 @@ declare global {
   interface Window {
     initialize?: () => void
     BMapGL?: any // 如果你也用到了 BMapGL，也可以加上
+    AMap?: any
   }
 }

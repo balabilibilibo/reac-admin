@@ -1,14 +1,9 @@
 import { useRef, useEffect } from 'react'
 import { useScript } from '@/hooks/useScript'
+import { nextTick } from '@/utils/tool'
 
 const BAI_DU_MAP_URL =
   'https://api.map.baidu.com/api?v=1.0&type=webgl&ak=nq0oJemKMiINkxnco5VX5XUdOvrTiKOz&callback=initialize'
-
-function nextTick(delay?: number) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, delay ?? 500)
-  })
-}
 
 export default function BaiduMap() {
   const mapRef = useRef<HTMLDivElement>(null)

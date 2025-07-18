@@ -124,9 +124,9 @@ const menuList = [
       },
       {
         name: '高德地图',
-        path: 'amap',
+        path: 'gaode',
         icon: null,
-        component: '/map/amap/index'
+        component: '/map/gaode/index'
       }
     ]
   },
