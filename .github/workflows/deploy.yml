@@ -30,6 +30,8 @@ jobs:
         with:
           node-version: 20
           cache: pnpm
+      - name: Clean pnpm cache
+        run: pnpm store prune # 新增步骤：清理 pnpm 缓存
 
       - name: Install dependencies
         run: pnpm install
