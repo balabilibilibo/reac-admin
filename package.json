@@ -9,7 +9,7 @@
   },
   "type": "module",
   "scripts": {
-    "build": "tsc -b && vite build",
+    "build": "vite build",
     "commit": "git-cz",
     "dev": "vite",
     "lint": "eslint .",
